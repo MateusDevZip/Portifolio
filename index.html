@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mateus - Desenvolvedor Full-Stack</title>
+    <title>Mateus - Full-Stack Developer & Martech</title>
     
     <!-- CSS Providers -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -85,6 +85,11 @@
         height: 100vh;
         z-index: -1;
         pointer-events: none;
+      }
+
+      /* Skills responsive font via clamp */
+      .skills-item-text {
+        font-size: clamp(28px, 7vw, 100px);
       }
 
       /* Skills text fill animation */
@@ -227,7 +232,7 @@
       <a href="#projects" class="hidden md:block link-underline text-sm font-space uppercase tracking-wider text-white/70 hover:text-white transition-colors">
         Projetos
       </a>
-      <a href="mailto:contato@mateus.dev" class="hidden md:flex text-sm font-space uppercase tracking-wider text-white border border-white/20 rounded-full px-6 py-2 hover:bg-white hover:text-black transition-colors cursor-pointer">
+      <a href="mailto:matdasilvapinto@gmail.com" class="hidden md:flex text-sm font-space uppercase tracking-wider text-white border border-white/20 rounded-full px-6 py-2 hover:bg-white hover:text-black transition-colors cursor-pointer">
         Contato
       </a>
     </div>
@@ -241,6 +246,7 @@
         <h1 class="text-heading font-archivo text-[50px] leading-[100%] md:text-[100px] xl:text-[140px] uppercase text-white mb-8" id="hero-title">
           <div class="overflow-hidden"><span class="block translate-y-full will-change-transform">Full-Stack</span></div>
           <div class="overflow-hidden"><span class="block translate-y-full will-change-transform ml-0 md:ml-20">Developer</span></div>
+          <div class="overflow-hidden"><span class="block translate-y-full will-change-transform text-[30px] md:text-[50px] xl:text-[70px] text-white/60">Martech</span></div>
         </h1>
       </div>
       
@@ -255,34 +261,28 @@
           <div class="absolute w-4 h-4 rounded-full bg-white"></div>
         </div>
         
-        <div class="flex flex-col gap-1 text-right lg:text-left shadow-md p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
-          <div class="flex items-center gap-3 justify-end lg:justify-start">
-            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]"></div>
-            <h3 class="uppercase text-lg md:text-[22px] font-medium text-white tracking-wide">Disponível para Projetos</h3>
-          </div>
-          <h4 class="font-light text-white/70 font-space text-sm">Baseado no Brasil</h4>
-        </div>
+        <div class="hidden"></div>
       </div>
     </section>
 
     <!-- Skills List Area -->
-    <section class="py-[120px] lg:py-[200px] relative grid grid-cols-12 px-[15px] lg:px-[20px] z-10 overflow-hidden">
-      <div class="col-span-6 relative hidden lg:block">
+    <section class="py-[120px] lg:py-[200px] relative grid grid-cols-12 px-[15px] lg:px-[20px] z-10 overflow-x-hidden">
+      <div class="col-span-3 relative hidden lg:block">
         <div class="sticky top-[50%] -translate-y-1/2 text-white -rotate-90 w-[500px] -left-32">
-          <p id="skill-citation" class="font-light tracking-wide text-xl ml-10" style="opacity: 1;">
+          <p id="skill-citation" class="font-light tracking-wide text-xl ml-10">
             ‟ É papel do desenvolvedor moldar como os usuários experienciam o mundo digital. "
           </p>
         </div>
       </div>
-      <div class="col-span-12 lg:col-span-6 flex flex-col gap-10 md:gap-14 lg:-mr-4" id="skills-list">
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ É papel do desenvolvedor moldar como os usuários experienciam o mundo digital. &quot;">FULL-STACK</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ Interfaces reativas e fluidas não são mais diferencial, mas o padrão diário. &quot;">NEXT.JS / REACT</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ Construindo regras de negócio seguras em arquiteturas limpas e sólidas. &quot;">NODE.JS / EXPRESS</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ A infraestrutura de dados molda o tempo de resposta que um sistema pode ter. &quot;">DATABASES</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ Desenhar APIs claras significa criar comunicações escaláveis entre sistemas. &quot;">API DESIGN</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ Conectando microsserviços via CI/CD com fluxos de trabalho simplificados. &quot;">DEVOPS</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ O movimento e a perspectiva se transformam em interações 3D inesquecíveis. &quot;">GSAP / THREE.JS</p>
-        <p class="about-item uppercase font-bold text-left lg:text-right text-[40px] md:text-[80px] lg:text-[100px] leading-none whitespace-nowrap" data-quote="‟ Porque o melhor código do mundo precisa ser encontrado e indexado rapidamente. &quot;">SEO / PERFORMANCE</p>
+      <div class="col-span-12 lg:col-span-9 flex flex-col gap-10 md:gap-14" id="skills-list">
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ É papel do desenvolvedor moldar como os usuários experienciam o mundo digital. &quot;">FULL-STACK</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ Interfaces reativas e fluidas não são mais diferencial, mas o padrão diário. &quot;">REACT / NEXT.JS</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ Construindo regras de negócio seguras em arquiteturas limpas e sólidas. &quot;">NODE.JS / PYTHON</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ TypeScript garante contratos sólidos entre cada camada da aplicação. &quot;">TYPESCRIPT</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ A infraestrutura de dados molda o tempo de resposta que um sistema pode ter. &quot;">SQL / NOSQL</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ AWS, GCP e Azure como base para sistemas que escalam sem limite. &quot;">AWS / CLOUD</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ Conectando stacks de marketing com dados e automações de alta performance. &quot;">MARTECH</p>
+        <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote="‟ Porque o melhor código do mundo precisa ser encontrado e indexado rapidamente. &quot;">SEO / PERFORMANCE</p>
       </div>
     </section>
 
@@ -386,19 +386,19 @@
     <section class="px-[30px] lg:px-[60px] pb-[100px] lg:pb-[200px] pt-[100px] flex flex-col lg:flex-row relative z-20 items-center justify-between border-t border-white/10 mt-[100px]">
       <div class="w-full lg:w-1/2 mb-16 lg:mb-0">
         <h2 class="text-[50px] lg:text-[80px] font-bold uppercase leading-none mb-8">Vamos Trabalhar <br><span class="text-white/50">Juntos.</span></h2>
-        <a class="uppercase inline-block hover:bg-white hover:text-black transition-colors text-center text-white text-[20px] lg:text-[30px] rounded-full px-10 py-4 border border-white" href="mailto:contato@mateus.dev">
+        <a class="uppercase inline-block hover:bg-white hover:text-black transition-colors text-center text-white text-[20px] lg:text-[30px] rounded-full px-10 py-4 border border-white" href="mailto:matdasilvapinto@gmail.com">
           Entre em contato
         </a>
       </div>
       
       <div class="flex flex-col w-full lg:w-auto gap-6 lg:gap-10">
-        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://linkedin.com/" target="_blank">
+        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://www.linkedin.com/in/mateusdsp/" target="_blank" rel="noopener">
           LinkedIn <span class="font-syne">↗</span>
         </a>
-        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://github.com/" target="_blank">
+        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://github.com/MateusDevZip" target="_blank" rel="noopener">
           GitHub <span class="font-syne">↗</span>
         </a>
-        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://instagram.com/" target="_blank">
+        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://instagram.com/" target="_blank" rel="noopener">
           Instagram <span class="font-syne">↗</span>
         </a>
       </div>
