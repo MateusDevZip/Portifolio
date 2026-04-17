@@ -1,4 +1,22 @@
-.claude/
+# Dependencies
 node_modules/
-*.log
+
+# IDE / Tools
+.claude/
+.playwright-mcp/
 .DS_Store
+
+# Logs
+*.log
+
+# Arquivos temporários de análise (gerados pela sessão Claude)
+referencia_ewan.md
+ANALISE_EWAN_KERBOAS.md
+TECNICAS_AVANCADAS_CODIGO.js
+site_html.html
+site_resources.json
+site_styles.css
+screenshot.png
+screenshot_home.png
+screenshot_project.png
+preview_updated.png
