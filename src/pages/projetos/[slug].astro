@@ -1,0 +1,162 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/sections/Footer.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const allProjects = await getCollection('projects');
+const currentIndex = allProjects.findIndex(p => p.slug === project.slug);
+const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
+const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
+---
+
+<BaseLayout title={`${project.data.title} — Mateus`} description={project.data.description}>
+  <Navbar />
+  <main class="pt-40 px-[30px] lg:px-[60px] pb-[100px] relative z-10">
+    <div class="max-w-4xl">
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-3 h-3 rounded-full" style={{ backgroundColor: project.data.color }}></div>
+          <span class="text-white/60 font-space text-sm uppercase tracking-widest">{project.data.category}</span>
+        </div>
+        <h1 class="text-[50px] lg:text-[80px] font-bold uppercase leading-none mb-8">{project.data.title}</h1>
+        <p class="text-white/60 text-lg font-space mb-8 max-w-2xl">{project.data.year}</p>
+
+        {project.data.technologies && (
+          <div class="flex flex-wrap gap-3 mb-12">
+            {project.data.technologies.map(tech => (
+              <span class="px-4 py-2 rounded-full border border-white/20 text-white/80 text-sm font-space">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-white/10 my-12"></div>
+
+      <!-- Article Content -->
+      <article class="prose prose-invert max-w-4xl prose-headings:font-bold prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
+        <Content />
+      </article>
+
+      <!-- Project Link -->
+      {project.data.link && (
+        <div class="mt-12 pt-12 border-t border-white/10">
+          <a href={project.data.link} target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black transition-colors text-white font-space font-medium text-sm">
+            Visitar Live <span class="text-lg">↗</span>
+          </a>
+        </div>
+      )}
+    </div>
+
+    <!-- Navigation -->
+    <div class="mt-[120px] pt-[80px] border-t border-white/10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Previous Project -->
+        {prevProject && (
+          <a href={`/projetos/${prevProject.slug}`} class="group">
+            <p class="text-white/60 font-space text-sm uppercase tracking-widest mb-4">Projeto Anterior</p>
+            <h3 class="text-[32px] lg:text-[40px] font-bold text-white uppercase group-hover:translate-x-2 transition-transform">
+              {prevProject.data.title}
+            </h3>
+            <p class="text-white/50 text-sm font-space mt-4">{prevProject.data.category}</p>
+          </a>
+        )}
+
+        <!-- Next Project -->
+        {nextProject && (
+          <a href={`/projetos/${nextProject.slug}`} class="group text-right lg:text-left">
+            <p class="text-white/60 font-space text-sm uppercase tracking-widest mb-4">Próximo Projeto</p>
+            <h3 class="text-[32px] lg:text-[40px] font-bold text-white uppercase group-hover:-translate-x-2 transition-transform">
+              {nextProject.data.title}
+            </h3>
+            <p class="text-white/50 text-sm font-space mt-4">{nextProject.data.category}</p>
+          </a>
+        )}
+      </div>
+    </div>
+  </main>
+  <Footer />
+
+  <script>
+    // Initialize scripts for project page
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Lenis initialization
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          direction: 'vertical',
+          gestureDirection: 'vertical',
+          smooth: true,
+          mouseMultiplier: 1,
+          smoothTouch: false,
+          touchMultiplier: 2,
+          infinite: false,
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+
+      // Custom cursor
+      const customCursor = document.querySelector('.custom-cursor');
+      const cursorFollower = document.querySelector('.cursor-follower');
+
+      if (customCursor && cursorFollower) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let followerX = 0;
+        let followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+
+          customCursor.style.left = mouseX + 'px';
+          customCursor.style.top = mouseY + 'px';
+          customCursor.classList.add('visible');
+
+          cursorFollower.classList.add('visible');
+        });
+
+        function animateFollower() {
+          followerX += (mouseX - followerX) * 0.2;
+          followerY += (mouseY - followerY) * 0.2;
+
+          cursorFollower.style.left = followerX + 'px';
+          cursorFollower.style.top = followerY + 'px';
+
+          requestAnimationFrame(animateFollower);
+        }
+
+        animateFollower();
+
+        document.addEventListener('mouseleave', () => {
+          customCursor.classList.remove('visible');
+          cursorFollower.classList.remove('visible');
+        });
+
+        document.addEventListener('touchstart', () => {
+          customCursor.classList.remove('visible');
+          cursorFollower.classList.remove('visible');
+        });
+      }
+    });
+  </script>
+</BaseLayout>

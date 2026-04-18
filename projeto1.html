@@ -4,100 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto E-commerce - Mateus</title>
-    
-    <!-- CSS Providers -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              syne: ['Syne', 'sans-serif'],
-              space: ['Space Grotesk', 'sans-serif'],
-            }
-          }
-        }
-      }
-    </script>
-    
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mateus — Full-Stack Developer especializado em React, Next.js, Node.js, Python e Martech. Portfólio com projetos de e-commerce, ERP e aplicações mobile.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Mateus — Full-Stack Developer & Martech">
+    <meta property="og:description" content="Full-Stack Developer especializado em arquiteturas escaláveis, performance e integração de stacks de marketing.">
+    <meta property="og:url" content="https://seudominio.com">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://seudominio.com">
+
     <!-- Fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <style>
-      body {
-        font-family: 'Syne', sans-serif;
-        background-color: #050505; 
-        color: white;
-        overflow-x: hidden;
-        cursor: none;
-      }
-      .font-space {
-        font-family: 'Space Grotesk', sans-serif;
-      }
-      .text-heading {
-        line-height: 1;
-        letter-spacing: -2px;
-      }
-      
-      /* Magic Custom Cursor */
-      .custom-cursor {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #fff;
-        pointer-events: none;
-        z-index: 10000;
-        top: 0; left: 0;
-        transform: translate(-50%, -50%);
-      }
-      .cursor-follower {
-        position: fixed;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        pointer-events: none;
-        z-index: 9999;
-        top: 0; left: 0;
-        transform: translate(-50%, -50%);
-        transition: width 0.3s, height 0.3s, background-color 0.3s;
-      }
-      @media (max-width: 768px) {
-        body { cursor: auto; }
-        .custom-cursor, .cursor-follower { display: none; }
-      }
-
-      /* 3D Background Canvas */
-      #bg-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        pointer-events: none;
-      }
-      
-      .reveal-text {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="antialiased">
 
   <!-- 3D Canvas Background -->
-  <canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas" role="presentation" aria-hidden="true"></canvas>
 
   <!-- Custom Cursor -->
   <div class="custom-cursor"></div>
   <div class="cursor-follower"></div>
 
   <!-- Navbar -->
-  <nav class="px-[30px] md:px-[60px] py-[30px] flex items-center justify-between absolute top-0 left-0 right-0 z-50">
+  <nav aria-label="Navegação principal" class="px-[30px] md:px-[60px] py-[30px] flex items-center justify-between fixed top-0 left-0 right-0 z-50">
     <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
       <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
         <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -108,14 +41,14 @@
 
   <!-- Main Content -->
   <main class="pt-[150px] pb-[100px] px-[30px] lg:px-[60px] max-w-[1400px] mx-auto z-10 relative">
-    
+
     <!-- Hero / Title -->
     <header class="mb-20">
       <div class="flex items-center gap-4 mb-6">
         <span class="text-white/50 font-space tracking-widest uppercase text-sm border border-white/20 rounded-full px-4 py-1">E-commerce</span>
         <span class="text-white/50 font-space tracking-widest uppercase text-sm border border-white/20 rounded-full px-4 py-1">2024</span>
       </div>
-      <h1 class="text-heading font-bold text-[50px] md:text-[80px] lg:text-[120px] uppercase text-white mb-8 reveal-text" id="project-title">
+      <h1 class="text-heading font-bold text-[50px] md:text-[80px] lg:text-[120px] uppercase text-white mb-8" id="project-title">
         <div class="overflow-hidden"><span class="block translate-y-full will-change-transform title-word">Projeto</span></div>
         <div class="overflow-hidden"><span class="block translate-y-full will-change-transform title-word text-blue-500">E-commerce</span></div>
       </h1>
@@ -168,7 +101,7 @@
           O cliente possuía um e-commerce em uma plataforma antiga que levava cerca de 6 segundos para carregar e tinha sérios problemas em indexar links de produtos dinâmicos. Eles também precisavam de um fluxo adaptável que lidasse com preços atacadistas (B2B) lado a lado ao consumidor final (B2C).
         </p>
         <p>
-          Minha abordagem foi repensar totalmente a infraestrutura desde o banco de dados. Migramos os itens e atributos customizados para um PostgreSQL mais eficiente e reconstruímos o frontend inteiro em **Next.js**, aproveitando Static Site Generation (SSG) e Server-Side Rendering (SSR) onde necessário. 
+          Minha abordagem foi repensar totalmente a infraestrutura desde o banco de dados. Migramos os itens e atributos customizados para um PostgreSQL mais eficiente e reconstruímos o frontend inteiro em **Next.js**, aproveitando Static Site Generation (SSG) e Server-Side Rendering (SSR) onde necessário.
         </p>
 
         <h3 class="text-3xl lg:text-4xl font-syne text-white mb-6 uppercase tracking-tight mt-12">Solução e Impacto</h3>
@@ -183,7 +116,7 @@
       <a href="projeto2.html" class="group text-right">
         <p class="text-white/50 font-space text-xs tracking-widest uppercase mb-4">Próximo Projeto</p>
         <h2 class="text-3xl md:text-5xl font-syne text-white uppercase flex items-center justify-end gap-6 group-hover:text-purple-400 transition-colors">
-          Sistema ERP 
+          Sistema ERP
           <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-purple-500 group-hover:border-purple-500 group-hover:text-black transition-all">
             <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </div>
@@ -193,113 +126,6 @@
 
   </main>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <script>
-    // Smooth Scroll with Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-    });
-    
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Custom Cursor
-    const cursor = document.querySelector('.custom-cursor');
-    const follower = document.querySelector('.cursor-follower');
-    
-    if (window.matchMedia("(pointer: fine)").matches) {
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power2.out" });
-      });
-
-      document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          gsap.to(follower, { scale: 1.5, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.8)", duration: 0.3 });
-          gsap.to(cursor, { scale: 0, duration: 0.2 });
-        });
-        el.addEventListener('mouseleave', () => {
-          gsap.to(follower, { scale: 1, backgroundColor: "transparent", borderColor: "rgba(255,255,255,0.4)", duration: 0.3 });
-          gsap.to(cursor, { scale: 1, duration: 0.2 });
-        });
-      });
-    }
-
-    // Header reveal animation
-    gsap.to('.title-word', { y: "0%", duration: 1.2, stagger: 0.1, ease: "power4.out", delay: 0.3 });
-
-    // THREE.js WebGL Particle Background
-    const canvas = document.getElementById('bg-canvas');
-    if(canvas) {
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x050505, 0.05);
-
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setSize(window.innerWidth, window.innerHeight);
-
-      const particlesGeometry = new THREE.BufferGeometry();
-      const count = 800; // Less particles for inside page
-      const positions = new Float32Array(count * 3);
-      
-      for(let i = 0; i < count * 3; i++) {
-        positions[i] = (Math.random() - 0.5) * 20;
-      }
-
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-      // Make them slightly blueish to match theme
-      const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.015,
-        color: 0x88aaff,
-        transparent: true,
-        opacity: 0.4,
-      });
-
-      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-      scene.add(particlesMesh);
-      camera.position.z = 5;
-
-      let mouseX = 0; let mouseY = 0;
-      document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX - window.innerWidth/2) * 0.001;
-        mouseY = (e.clientY - window.innerHeight/2) * 0.001;
-      });
-      
-      let scrollY = window.scrollY;
-      window.addEventListener('scroll', () => { scrollY = window.scrollY; });
-
-      const clock = new THREE.Clock();
-      function animateThree() {
-        requestAnimationFrame(animateThree);
-        const elapsedTime = clock.getElapsedTime();
-        particlesMesh.rotation.y = elapsedTime * 0.02;
-        
-        camera.position.x += (mouseX - camera.position.x) * 0.05;
-        camera.position.y += (-mouseY - camera.position.y) * 0.05;
-        camera.position.z = 5 + (scrollY * 0.001);
-
-        renderer.render(scene, camera);
-      }
-      animateThree();
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-  </script>
+  <script type="module" src="/src/projeto1.js"></script>
 </body>
 </html>

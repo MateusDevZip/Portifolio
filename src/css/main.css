@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Syne', sans-serif;
+  background-color: #050505; /* Blackish background */
+  color: white;
+  overflow-x: hidden;
+  cursor: none;
+}
+.font-space {
+  font-family: 'Space Grotesk', sans-serif;
+}
+.text-heading {
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+/* Magic Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  pointer-events: none;
+  z-index: 10000;
+  top: 0; left: 0;
+  transform: translate(-50%, -50%);
+}
+.cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  z-index: 9999;
+  top: 0; left: 0;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .custom-cursor, .cursor-follower { display: none; }
+}
+
+/* 3D Background Canvas */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Skills responsive font via clamp */
+.skills-item-text {
+  font-size: clamp(28px, 7vw, 100px);
+}
+
+/* Skills text fill animation */
+.about-item {
+  background: linear-gradient(90deg, #ffffff 50%, rgba(255,255,255,0.2) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.about-item.is-visible, .about-item:hover {
+  background-position: 0 0;
+}
+
+/* Projects List interaction */
+.split-project-item {
+  border-left: 2px solid transparent;
+  opacity: 0.4;
+  transition: all 0.4s ease;
+}
+.split-project-item.active {
+  border-color: #fff;
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+.project-preview-item {
+  opacity: 0.3;
+  transition: opacity 0.5s;
+  filter: grayscale(80%);
+}
+.project-preview-item.active {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.split-title svg {
+  animation: spin 6s linear infinite;
+}
+
+/* Page Transition Overlay */
+.page-transition {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: #fff;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Nav backdrop on scroll */
+nav.nav-scrolled {
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+/* Link underline hover */
+.link-underline {
+  position: relative;
+}
+.link-underline::before {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0;
+  height: 1px;
+  background: white;
+  width: 0%;
+  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.link-underline:hover::before { width: 100%; }
+
+/* Project card hover */
+.project-card {
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.project-card:hover { transform: translateY(-8px); }
+@media (min-width: 1024px) {
+  .project-card:hover { transform: translateY(-12px) scale(1.02); }
+}
+.project-image {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.project-card:hover .project-image { transform: scale(1.05); }
+
+/* Particle click effect */
+@keyframes particle-burst {
+  0%   { transform: translate(-50%,-50%) rotate(var(--angle)) translateY(0) scale(1); opacity: 1; }
+  100% { transform: translate(-50%,-50%) rotate(var(--angle)) translateY(-28px) scale(0); opacity: 0; }
+}
+.click-particle {
+  position: fixed;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: white;
+  pointer-events: none;
+  z-index: 10001;
+  animation: particle-burst 0.6s ease-out forwards;
+}
+
+/* Project counter */
+.project-counter {
+  font-family: 'Space Grotesk', monospace;
+  font-size: clamp(60px, 8vw, 100px);
+  font-weight: 700;
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+  letter-spacing: -2px;
+  transition: color 0.4s ease;
+}

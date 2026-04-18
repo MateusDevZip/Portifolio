@@ -4,210 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mateus - Full-Stack Developer & Martech</title>
-    
-    <!-- CSS Providers -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              syne: ['Syne', 'sans-serif'],
-              space: ['Space Grotesk', 'sans-serif'],
-              archivo: ['"Archivo Black"', 'sans-serif'],
-              inter: ['Inter', 'sans-serif'],
-            },
-            animation: {
-              'spin-slow': 'spin 8s linear infinite',
-            }
-          }
-        }
-      }
-    </script>
-    
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mateus — Full-Stack Developer especializado em React, Next.js, Node.js, Python e Martech. Portfólio com projetos de e-commerce, ERP e aplicações mobile.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Mateus — Full-Stack Developer & Martech">
+    <meta property="og:description" content="Full-Stack Developer especializado em arquiteturas escaláveis, performance e integração de stacks de marketing.">
+    <meta property="og:url" content="https://seudominio.com">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://seudominio.com">
+
     <!-- Fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <style>
-      body {
-        font-family: 'Syne', sans-serif;
-        background-color: #050505; /* Blackish background */
-        color: white;
-        overflow-x: hidden;
-        cursor: none;
-      }
-      .font-space {
-        font-family: 'Space Grotesk', sans-serif;
-      }
-      .text-heading {
-        line-height: 1;
-        letter-spacing: -2px;
-      }
-      
-      /* Magic Custom Cursor */
-      .custom-cursor {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #fff;
-        pointer-events: none;
-        z-index: 10000;
-        top: 0; left: 0;
-        transform: translate(-50%, -50%);
-      }
-      .cursor-follower {
-        position: fixed;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        pointer-events: none;
-        z-index: 9999;
-        top: 0; left: 0;
-        transform: translate(-50%, -50%);
-        transition: width 0.3s, height 0.3s, background-color 0.3s;
-      }
-      @media (max-width: 768px) {
-        body { cursor: auto; }
-        .custom-cursor, .cursor-follower { display: none; }
-      }
-
-      /* 3D Background Canvas */
-      #bg-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      /* Skills responsive font via clamp */
-      .skills-item-text {
-        font-size: clamp(28px, 7vw, 100px);
-      }
-
-      /* Skills text fill animation */
-      .about-item {
-        background: linear-gradient(90deg, #ffffff 50%, rgba(255,255,255,0.2) 50%);
-        background-size: 200% 100%;
-        background-position: 100% 0;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transition: background-position 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      .about-item.is-visible, .about-item:hover {
-        background-position: 0 0;
-      }
-
-      /* Projects List interaction */
-      .split-project-item {
-        border-left: 2px solid transparent;
-        opacity: 0.4;
-        transition: all 0.4s ease;
-      }
-      .split-project-item.active {
-        border-color: #fff;
-        opacity: 1;
-        transform: translateX(10px);
-      }
-      
-      .project-preview-item {
-        opacity: 0.3;
-        transition: opacity 0.5s;
-        filter: grayscale(80%);
-      }
-      .project-preview-item.active {
-        opacity: 1;
-        filter: grayscale(0%);
-      }
-      
-      .split-title svg {
-        animation: spin 6s linear infinite;
-      }
-
-      /* Page Transition Overlay */
-      .page-transition {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100vh;
-        background: #fff;
-        transform: scaleY(0);
-        transform-origin: center bottom;
-        z-index: 9999;
-        pointer-events: none;
-      }
-
-      /* Nav backdrop on scroll */
-      nav.nav-scrolled {
-        background: rgba(5, 5, 5, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        transition: background 0.4s ease, border-color 0.4s ease;
-      }
-
-      /* Link underline hover */
-      .link-underline {
-        position: relative;
-      }
-      .link-underline::before {
-        content: "";
-        position: absolute;
-        bottom: -2px; left: 0;
-        height: 1px;
-        background: white;
-        width: 0%;
-        transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      .link-underline:hover::before { width: 100%; }
-
-      /* Project card hover */
-      .project-card {
-        will-change: transform;
-        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      .project-card:hover { transform: translateY(-8px); }
-      @media (min-width: 1024px) {
-        .project-card:hover { transform: translateY(-12px) scale(1.02); }
-      }
-      .project-image {
-        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: transform;
-      }
-      .project-card:hover .project-image { transform: scale(1.05); }
-
-      /* Particle click effect */
-      @keyframes particle-burst {
-        0%   { transform: translate(-50%,-50%) rotate(var(--angle)) translateY(0) scale(1); opacity: 1; }
-        100% { transform: translate(-50%,-50%) rotate(var(--angle)) translateY(-28px) scale(0); opacity: 0; }
-      }
-      .click-particle {
-        position: fixed;
-        width: 5px; height: 5px;
-        border-radius: 50%;
-        background: white;
-        pointer-events: none;
-        z-index: 10001;
-        animation: particle-burst 0.6s ease-out forwards;
-      }
-
-      /* Project counter */
-      .project-counter {
-        font-family: 'Space Grotesk', monospace;
-        font-size: clamp(60px, 8vw, 100px);
-        font-weight: 700;
-        color: rgba(255,255,255,0.12);
-        line-height: 1;
-        letter-spacing: -2px;
-        transition: color 0.4s ease;
-      }
-    </style>
 </head>
 <body class="antialiased">
 
@@ -215,14 +26,14 @@
   <div class="page-transition" id="page-transition"></div>
 
   <!-- 3D Canvas Background -->
-  <canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas" role="presentation" aria-hidden="true"></canvas>
 
   <!-- Custom Cursor -->
   <div class="custom-cursor"></div>
   <div class="cursor-follower"></div>
 
   <!-- Navbar -->
-  <nav id="main-nav" class="px-[30px] md:px-[60px] py-[30px] flex items-center justify-between fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
+  <nav id="main-nav" aria-label="Navegação principal" class="px-[30px] md:px-[60px] py-[30px] flex items-center justify-between fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
     <div>
       <a href="/" class="link-underline text-[28px] md:text-[40px] font-light text-white tracking-widest uppercase items-center flex gap-1">
         Mateus<span class="w-2 h-2 rounded-full bg-white mt-4"></span>
@@ -249,10 +60,10 @@
           <div class="overflow-hidden"><span class="block translate-y-full will-change-transform text-[30px] md:text-[50px] xl:text-[70px] text-white/60">Martech</span></div>
         </h1>
       </div>
-      
+
       <div class="absolute left-0 bottom-[60px] right-0 flex items-end lg:items-start justify-between px-[30px] lg:px-[60px]">
         <div class="hidden lg:flex w-[120px] h-[120px] items-center justify-center relative spin-text cursor-pointer">
-          <svg viewBox="0 0 100 100" width="100" height="100" class="animate-spin-slow text-white fill-current">
+          <svg viewBox="0 0 100 100" width="100" height="100" class="animate-spin-slow text-white fill-current" aria-label="Rolar para baixo">
             <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"></path>
             <text class="text-[11px] uppercase tracking-[6px] font-space font-medium">
               <textPath href="#circlePath">Scroll Down • Scroll Down •</textPath>
@@ -260,13 +71,13 @@
           </svg>
           <div class="absolute w-4 h-4 rounded-full bg-white"></div>
         </div>
-        
+
         <div class="hidden"></div>
       </div>
     </section>
 
     <!-- Skills List Area -->
-    <section class="py-[120px] lg:py-[200px] relative grid grid-cols-12 px-[15px] lg:px-[20px] z-10 overflow-x-hidden">
+    <section aria-label="Habilidades técnicas" class="py-[120px] lg:py-[200px] relative grid grid-cols-12 px-[15px] lg:px-[20px] z-10 overflow-x-hidden">
       <div class="col-span-3 relative hidden lg:block">
         <div class="sticky top-[50%] -translate-y-1/2 text-white -rotate-90 w-[500px] -left-32">
           <p id="skill-citation" class="font-light tracking-wide text-xl ml-10">
@@ -287,7 +98,7 @@
     </section>
 
     <!-- Projects Portfolio -->
-    <section id="projects" class="projects-split px-[30px] lg:px-[60px] py-[100px] lg:py-[150px] relative z-10">
+    <section id="projects" aria-label="Projetos selecionados" class="projects-split px-[30px] lg:px-[60px] py-[100px] lg:py-[150px] relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-24">
 
         <!-- Left Side: Project Names -->
@@ -300,7 +111,7 @@
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
             <h2 class="uppercase text-white font-space tracking-widest text-[14px]">Trabalhos Selecionados</h2>
           </div>
-          
+
           <div class="space-y-4" id="project-links">
             <!-- P1 -->
             <a href="projeto1.html" class="split-project-item active flex justify-between items-center py-4 pl-6 cursor-pointer group">
@@ -390,312 +201,21 @@
           Entre em contato
         </a>
       </div>
-      
+
       <div class="flex flex-col w-full lg:w-auto gap-6 lg:gap-10">
-        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://www.linkedin.com/in/mateusdsp/" target="_blank" rel="noopener">
+        <a aria-label="Acessar LinkedIn de Mateus" class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://www.linkedin.com/in/mateusdsp/" target="_blank" rel="noopener">
           LinkedIn <span class="font-syne">↗</span>
         </a>
-        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://github.com/MateusDevZip" target="_blank" rel="noopener">
+        <a aria-label="Acessar GitHub de Mateus" class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://github.com/MateusDevZip" target="_blank" rel="noopener">
           GitHub <span class="font-syne">↗</span>
         </a>
-        <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://instagram.com/" target="_blank" rel="noopener">
+        <a aria-label="Acessar Instagram de Mateus" class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://instagram.com/" target="_blank" rel="noopener">
           Instagram <span class="font-syne">↗</span>
         </a>
       </div>
     </section>
   </main>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <script>
-    // Smooth Scroll with Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-    
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Custom Cursor tracking
-    const cursor = document.querySelector('.custom-cursor');
-    const follower = document.querySelector('.cursor-follower');
-    
-    // Only apply complex cursor logic if it's not a touch device
-    if (window.matchMedia("(pointer: fine)").matches) {
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        // GSAP lerp for smooth follower
-        gsap.to(follower, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.6,
-          ease: "power2.out"
-        });
-      });
-
-      // Hover states for links and buttons
-      const interactiveElements = document.querySelectorAll('a, button, .cursor-pointer');
-      interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          gsap.to(follower, {
-            scale: 1.5,
-            backgroundColor: "rgba(255,255,255,0.1)",
-            borderColor: "rgba(255,255,255,0.8)",
-            duration: 0.3
-          });
-          gsap.to(cursor, { scale: 0, duration: 0.2 });
-        });
-        el.addEventListener('mouseleave', () => {
-          gsap.to(follower, {
-            scale: 1,
-            backgroundColor: "transparent",
-            borderColor: "rgba(255,255,255,0.4)",
-            duration: 0.3
-          });
-          gsap.to(cursor, { scale: 1, duration: 0.2 });
-        });
-      });
-    }
-
-    // GSAP Plugins Setup
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Initial Hero text reveal animation
-    const reveals = document.querySelectorAll('#hero-title span');
-    gsap.to(reveals, {
-      y: "0%",
-      duration: 1.2,
-      stagger: 0.2,
-      ease: "power4.out",
-      delay: 0.5
-    });
-
-    // Skills/About item scroll fill effect
-    const aboutItems = document.querySelectorAll('.about-item');
-    const citationEl = document.getElementById('skill-citation');
-    
-    aboutItems.forEach((item) => {
-      ScrollTrigger.create({
-        trigger: item,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          item.classList.add('is-visible');
-          if (citationEl) {
-            gsap.to(citationEl, { opacity: 0, y: -20, duration: 0.2, onComplete: () => {
-              citationEl.innerText = item.getAttribute('data-quote');
-              gsap.to(citationEl, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" });
-            }});
-          }
-        },
-        onEnterBack: () => {
-          if (citationEl && item.getAttribute('data-quote')) {
-            gsap.to(citationEl, { opacity: 0, y: 20, duration: 0.2, onComplete: () => {
-              citationEl.innerText = item.getAttribute('data-quote');
-              gsap.to(citationEl, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" });
-            }});
-          }
-        },
-        onLeaveBack: () => item.classList.remove('is-visible')
-      });
-    });
-
-    // Projects scroll spy sync algorithm
-    const projectLinks = document.querySelectorAll('.split-project-item');
-    const projectPreviews = document.querySelectorAll('.project-preview-item');
-
-    projectPreviews.forEach((preview, index) => {
-      ScrollTrigger.create({
-        trigger: preview,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => activateProject(index),
-        onEnterBack: () => activateProject(index)
-      });
-    });
-
-    function activateProject(index) {
-      projectLinks.forEach(link => link.classList.remove('active'));
-      projectPreviews.forEach(prev => prev.classList.remove('active'));
-      
-      if (projectLinks[index]) projectLinks[index].classList.add('active');
-      if (projectPreviews[index]) projectPreviews[index].classList.add('active');
-    }
-
-    // Update project counter on scroll
-    const counterEl = document.getElementById('project-counter');
-    if (counterEl) {
-      projectPreviews.forEach((preview, index) => {
-        ScrollTrigger.create({
-          trigger: preview,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => { counterEl.textContent = String(index + 1).padStart(2, '0'); },
-          onEnterBack: () => { counterEl.textContent = String(index + 1).padStart(2, '0'); }
-        });
-      });
-    }
-
-    // Nav backdrop on scroll
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('nav-scrolled', window.scrollY > 50);
-    }, { passive: true });
-
-    // Page transitions for internal links
-    const pageTransition = document.getElementById('page-transition');
-    document.querySelectorAll('a[href]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http') || href.startsWith('//')) return;
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = href;
-        gsap.timeline()
-          .set(pageTransition, { scaleY: 0, transformOrigin: 'center bottom', pointerEvents: 'all' })
-          .to(pageTransition, { scaleY: 1, duration: 0.55, ease: 'power3.inOut' })
-          .then(() => { window.location.href = target; });
-      });
-    });
-
-    // Page enter animation (when coming from another page)
-    if (document.referrer && document.referrer.includes(window.location.hostname)) {
-      gsap.fromTo(pageTransition,
-        { scaleY: 1, transformOrigin: 'center top' },
-        { scaleY: 0, duration: 0.55, ease: 'power3.inOut', delay: 0.1, onComplete: () => {
-          pageTransition.style.pointerEvents = 'none';
-        }}
-      );
-    }
-
-    // Particle burst on click
-    document.addEventListener('click', e => {
-      const count = 8;
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'click-particle';
-        p.style.left = e.clientX + 'px';
-        p.style.top = e.clientY + 'px';
-        p.style.setProperty('--angle', `${(360 / count) * i}deg`);
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 650);
-      }
-    });
-
-    // THREE.js WebGL Particle Background (inspired by the original)
-    const canvas = document.getElementById('bg-canvas');
-    if(canvas) {
-      const scene = new THREE.Scene();
-      
-      // Add very subtle fog for depth
-      scene.fog = new THREE.FogExp2(0x050505, 0.05);
-
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // optimize for high DPI
-      renderer.setSize(window.innerWidth, window.innerHeight);
-
-      // Create geometry with points
-      const particlesGeometry = new THREE.BufferGeometry();
-      const count = 1500; // number of dots
-      
-      const positions = new Float32Array(count * 3);
-      const randoms = new Float32Array(count); // For varied movement
-      
-      for(let i = 0; i < count * 3; i++) {
-        // Spread particles across a wide area
-        positions[i] = (Math.random() - 0.5) * 20;
-      }
-      for(let i = 0; i < count; i++) {
-        randoms[i] = Math.random();
-      }
-
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      particlesGeometry.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1));
-
-      // Use basic points material
-      const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.015,
-        color: 0xaaaaaa,
-        transparent: true,
-        opacity: 0.6,
-        sizeAttenuation: true
-      });
-
-      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-      scene.add(particlesMesh);
-
-      camera.position.z = 5;
-
-      // Mouse tracking for parallax
-      let mouseX = 0;
-      let mouseY = 0;
-      let targetX = 0;
-      let targetY = 0;
-      const windowHalfX = window.innerWidth / 2;
-      const windowHalfY = window.innerHeight / 2;
-
-      document.addEventListener('mousemove', (event) => {
-        mouseX = (event.clientX - windowHalfX);
-        mouseY = (event.clientY - windowHalfY);
-      });
-      
-      // Update camera based on scroll
-      let scrollY = window.scrollY;
-      window.addEventListener('scroll', () => {
-        scrollY = window.scrollY;
-      });
-
-      // Animation Loop
-      const clock = new THREE.Clock();
-      function animateThree() {
-        requestAnimationFrame(animateThree);
-        const elapsedTime = clock.getElapsedTime();
-
-        // Rotate scene slowly
-        particlesMesh.rotation.y = elapsedTime * 0.05;
-        particlesMesh.rotation.x = elapsedTime * 0.02;
-
-        // Parallax effect on mouse move
-        targetX = mouseX * 0.001;
-        targetY = mouseY * 0.001;
-        
-        camera.position.x += (targetX - camera.position.x) * 0.05;
-        camera.position.y += (-targetY - camera.position.y) * 0.05;
-        
-        // Move camera slightly based on scroll
-        camera.position.z = 5 + (scrollY * 0.001);
-
-        renderer.render(scene, camera);
-      }
-      
-      animateThree();
-
-      // Handle Resize
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+---
+const skills = [
+  { name: 'FULL-STACK', quote: '‟ É papel do desenvolvedor moldar como os usuários experienciam o mundo digital. "' },
+  { name: 'REACT / NEXT.JS', quote: '‟ Interfaces reativas e fluidas não são mais diferencial, mas o padrão diário. "' },
+  { name: 'NODE.JS / PYTHON', quote: '‟ Construindo regras de negócio seguras em arquiteturas limpas e sólidas. "' },
+  { name: 'TYPESCRIPT', quote: '‟ TypeScript garante contratos sólidos entre cada camada da aplicação. "' },
+  { name: 'SQL / NOSQL', quote: '‟ A infraestrutura de dados molda o tempo de resposta que um sistema pode ter. "' },
+  { name: 'AWS / CLOUD', quote: '‟ AWS, GCP e Azure como base para sistemas que escalam sem limite. "' },
+  { name: 'MARTECH', quote: '‟ Conectando stacks de marketing com dados e automações de alta performance. "' },
+  { name: 'SEO / PERFORMANCE', quote: '‟ Porque o melhor código do mundo precisa ser encontrado e indexado rapidamente. "' },
+];
+---
+
+<section class="py-[120px] lg:py-[200px] relative grid grid-cols-12 px-[15px] lg:px-[20px] z-10 overflow-x-hidden" aria-label="Habilidades técnicas">
+  <div class="col-span-3 relative hidden lg:block">
+    <div class="sticky top-[50%] -translate-y-1/2 text-white -rotate-90 w-[500px] -left-32">
+      <p id="skill-citation" class="font-light tracking-wide text-xl ml-10">
+        ‟ É papel do desenvolvedor moldar como os usuários experienciam o mundo digital. "
+      </p>
+    </div>
+  </div>
+  <div class="col-span-12 lg:col-span-9 flex flex-col gap-10 md:gap-14" id="skills-list">
+    {skills.map(skill => (
+      <p class="about-item skills-item-text uppercase font-bold text-left lg:text-right leading-none lg:whitespace-nowrap" data-quote={skill.quote}>
+        {skill.name}
+      </p>
+    ))}
+  </div>
+</section>
+
+<script>
+  // Skills hover animation
+  if (typeof gsap !== 'undefined') {
+    const skillItems = document.querySelectorAll('.skills-item-text');
+    const skillCitation = document.getElementById('skill-citation');
+
+    skillItems.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        const quote = item.getAttribute('data-quote');
+        if (skillCitation && quote) {
+          gsap.to(skillCitation, {
+            opacity: 0,
+            duration: 0.2
+          });
+          setTimeout(() => {
+            skillCitation.textContent = quote;
+            gsap.to(skillCitation, {
+              opacity: 1,
+              duration: 0.2
+            });
+          }, 100);
+        }
+      });
+    });
+  }
+</script>

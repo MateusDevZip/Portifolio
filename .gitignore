@@ -1,13 +1,37 @@
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Astro
+dist/
+.astro/
+.vite/
+.env
+.env.local
+.env.*.local
 
 # IDE / Tools
 .claude/
 .playwright-mcp/
 .DS_Store
+.vscode/
+.idea/
 
 # Logs
 *.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build
+build/
+dist/
+.cache/
+.vercel
 
 # Arquivos temporários de análise (gerados pela sessão Claude)
 referencia_ewan.md

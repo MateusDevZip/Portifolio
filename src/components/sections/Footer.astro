@@ -1,0 +1,41 @@
+---
+---
+<section class="px-[30px] lg:px-[60px] pb-[100px] lg:pb-[200px] pt-[100px] flex flex-col lg:flex-row relative z-20 items-center justify-between border-t border-white/10 mt-[100px]">
+  <div class="w-full lg:w-1/2 mb-16 lg:mb-0">
+    <h2 class="text-[50px] lg:text-[80px] font-bold uppercase leading-none mb-8">Vamos Trabalhar <br><span class="text-white/50">Juntos.</span></h2>
+    <a class="uppercase inline-block hover:bg-white hover:text-black transition-colors text-center text-white text-[20px] lg:text-[30px] rounded-full px-10 py-4 border border-white" href="mailto:matdasilvapinto@gmail.com">
+      Entre em contato
+    </a>
+  </div>
+
+  <div class="flex flex-col w-full lg:w-auto gap-6 lg:gap-10">
+    <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://www.linkedin.com/in/mateusdsp/" target="_blank" rel="noopener" aria-label="Acessar LinkedIn de Mateus">
+      LinkedIn <span class="font-syne">↗</span>
+    </a>
+    <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://github.com/MateusDevZip" target="_blank" rel="noopener" aria-label="Acessar GitHub de Mateus">
+      GitHub <span class="font-syne">↗</span>
+    </a>
+    <a class="text-[20px] lg:text-[30px] font-space uppercase flex items-center justify-between text-white hover:text-white/60 transition-colors w-full lg:w-[350px] border-b border-white/20 pb-4" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Acessar Instagram de Mateus">
+      Instagram <span class="font-syne">↗</span>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Footer animation on scroll
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    const footer = document.querySelector('section[aria-label="Projetos selecionados"]')?.nextElementSibling;
+    if (footer) {
+      gsap.to(footer, {
+        scrollTrigger: {
+          trigger: footer,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        },
+        duration: 0.8,
+        y: 0,
+        opacity: 1
+      });
+    }
+  }
+</script>
