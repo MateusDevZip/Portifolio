@@ -1,9 +1,9 @@
+/* Import custom styles from phase 2 */
+@import '../css/main.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import custom styles from phase 2 */
-@import '../css/main.css';
 
 html {
   scroll-behavior: smooth;

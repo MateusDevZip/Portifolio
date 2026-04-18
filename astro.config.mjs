@@ -10,6 +10,7 @@ export default defineConfig({
     sitemap(),
     pwa({
       registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'Mateus — Full-Stack Developer',
         short_name: 'Mateus.dev',
@@ -33,7 +34,6 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt}'],
         navigateFallback: '/index.html',
         runtimeCaching: [
           {
