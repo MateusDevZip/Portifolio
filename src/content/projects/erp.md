@@ -6,6 +6,7 @@ description: Um dashboard robusto desenvolvido com Vue.js e Python (Django) para
 color: "#a855f7"
 technologies: ["Vue.js", "Django", "PostgreSQL", "Redis"]
 link: https://erp-example.com
+order: 4
 ---
 
 ## Visão Geral

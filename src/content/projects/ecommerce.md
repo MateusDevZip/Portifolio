@@ -6,6 +6,7 @@ description: Construído com Next.js, Stripe e TailwindCSS, essa loja virtual en
 color: "#3b82f6"
 technologies: ["Next.js", "Stripe", "TailwindCSS", "PostgreSQL"]
 link: https://ecommerce-example.com
+order: 3
 ---
 
 ## Visão Geral
