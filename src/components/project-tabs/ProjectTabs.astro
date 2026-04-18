@@ -1,0 +1,207 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'div'> {}
+
+const html = await Astro.slots.render('default');
+
+// Extract H2 sections from HTML
+function extractSections(htmlStr: string) {
+  const sections: Array<{ title: string; id: string; content: string }> = [];
+
+  // Match h2 tags and their content
+  const h2Regex = /<h2[^>]*>([^<]+)<\/h2>/g;
+  const matches = [...htmlStr.matchAll(h2Regex)];
+
+  if (matches.length === 0) {
+    // No h2 found, return the entire content as one section
+    return [{ title: 'Conteúdo', id: 'conteudo', content: htmlStr }];
+  }
+
+  matches.forEach((match, idx) => {
+    const title = match[1].trim();
+    const id = title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+    const startPos = match.index! + match[0].length;
+
+    // Get content until next h2 or end of string
+    const nextMatch = matches[idx + 1];
+    const endPos = nextMatch ? nextMatch.index : htmlStr.length;
+
+    let content = htmlStr.substring(startPos, endPos).trim();
+    // Add back the h2 tag
+    content = match[0] + content;
+
+    sections.push({ title, id, content });
+  });
+
+  return sections;
+}
+
+const sections = extractSections(html);
+---
+
+<div class="tabs-wrapper">
+  <div class="tabs-navigation">
+    {sections.map((section, idx) => (
+      <button
+        class="tab-btn"
+        data-tab={section.id}
+        aria-selected={idx === 0 ? 'true' : 'false'}
+      >
+        {section.title}
+      </button>
+    ))}
+  </div>
+
+  <div class="tabs-content">
+    {sections.map((section, idx) => (
+      <div
+        class="tab-pane"
+        id={`tab-${section.id}`}
+        role="tabpanel"
+        style={{ display: idx === 0 ? 'block' : 'none' }}
+      >
+        <div set:html={section.content} />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .tabs-wrapper {
+    width: 100%;
+  }
+
+  .tabs-navigation {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .tab-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .tab-btn[aria-selected='true'] {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+  }
+
+  .tabs-content {
+    width: 100%;
+  }
+
+  .tab-pane {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .tab-pane :global(h2),
+  .tab-pane :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .tab-pane :global(h2) {
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .tab-pane :global(p) {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+  }
+
+  .tab-pane :global(ul) {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .tab-pane :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .tab-pane :global(strong) {
+    color: white;
+    font-weight: 600;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 640px) {
+    .tabs-navigation {
+      flex-direction: column;
+    }
+
+    .tab-btn {
+      width: 100%;
+      text-align: left;
+      border-bottom: none;
+      border-left: 2px solid transparent;
+      padding: 0.75rem 1rem;
+    }
+
+    .tab-btn[aria-selected='true'] {
+      border-left-color: #3b82f6;
+      border-bottom-color: transparent;
+    }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panes = document.querySelectorAll('.tab-pane');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+
+      buttons.forEach(b => b.setAttribute('aria-selected', 'false'));
+      panes.forEach(p => p.style.display = 'none');
+
+      btn.setAttribute('aria-selected', 'true');
+      const pane = document.getElementById(`tab-${tabId}`);
+      if (pane) pane.style.display = 'block';
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        const next = btn.nextElementSibling as HTMLElement;
+        if (next?.classList.contains('tab-btn')) {
+          next.click();
+          next.focus();
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        const prev = btn.previousElementSibling as HTMLElement;
+        if (prev?.classList.contains('tab-btn')) {
+          prev.click();
+          prev.focus();
+        }
+      }
+    });
+  });
+</script>

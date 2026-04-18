@@ -29,7 +29,11 @@ function extractSections(html: string) {
 
 // Check if project should use tabs
 const usesTabs = ['crmontesite', 'gestaolayoutssheets'].includes(project.slug);
-const sections = usesTabs ? extractSections(await (await project.render()).then(r => r.html)) : [];
+const sections = [];
+if (usesTabs) {
+  const rendered = await project.render();
+  // We'll get the sections when rendering the component
+}
 
 const allProjects = await getCollection('projects');
 const currentIndex = allProjects.findIndex(p => p.slug === project.slug);
@@ -64,9 +68,15 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
       <div class="border-t border-white/10 my-12"></div>
 
       <!-- Article Content -->
-      <article class="prose prose-invert max-w-4xl prose-headings:font-bold prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
-        <Content />
-      </article>
+      {usesTabs ? (
+        <ProjectTabs client:load>
+          <Content />
+        </ProjectTabs>
+      ) : (
+        <article class="prose prose-invert max-w-4xl prose-headings:font-bold prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
+          <Content />
+        </article>
+      )}
 
       <!-- Project Link -->
       {project.data.link && (
