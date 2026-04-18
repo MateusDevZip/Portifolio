@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/sections/Footer.astro';
-import ProjectTabs from '../../components/project-tabs/ProjectTabs.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -15,25 +14,6 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-
-// Extract H2 sections from rendered markdown
-function extractSections(html: string) {
-  const regex = /<h2[^>]*>([^<]+)<\/h2>/g;
-  const sections = [];
-  let match;
-  while ((match = regex.exec(html)) !== null) {
-    sections.push(match[1]);
-  }
-  return sections;
-}
-
-// Check if project should use tabs
-const usesTabs = ['crmontesite', 'gestaolayoutssheets'].includes(project.slug);
-const sections = [];
-if (usesTabs) {
-  const rendered = await project.render();
-  // We'll get the sections when rendering the component
-}
 
 const allProjects = await getCollection('projects');
 const currentIndex = allProjects.findIndex(p => p.slug === project.slug);
@@ -68,15 +48,9 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
       <div class="border-t border-white/10 my-12"></div>
 
       <!-- Article Content -->
-      {usesTabs ? (
-        <ProjectTabs client:load>
-          <Content />
-        </ProjectTabs>
-      ) : (
-        <article class="prose prose-invert max-w-4xl prose-headings:font-bold prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
-          <Content />
-        </article>
-      )}
+      <article class="prose prose-invert max-w-4xl prose-headings:font-bold prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
+        <Content />
+      </article>
 
       <!-- Project Link -->
       {project.data.link && (
