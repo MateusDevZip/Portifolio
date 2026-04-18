@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import pwa from '@vite-pwa/astro';
 
 export default defineConfig({
-  site: 'https://mateusdeveloper.com',
+  site: 'https://MateusDevZip.github.io/Portifolio/',
+  base: '/Portifolio/',
   integrations: [
     tailwind(),
     sitemap(),
