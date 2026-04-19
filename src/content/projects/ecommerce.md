@@ -7,6 +7,7 @@ color: "#3b82f6"
 technologies: ["Next.js", "Stripe", "TailwindCSS", "PostgreSQL"]
 link: https://ecommerce-example.com
 order: 3
+images: []
 ---
 
 ## Visão Geral

@@ -7,6 +7,7 @@ color: "#22c55e"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui", "Vite", "Google Sheets API"]
 link: null
 order: 2
+images: []
 ---
 
 ## Visão Geral

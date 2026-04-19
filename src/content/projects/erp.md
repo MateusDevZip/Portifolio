@@ -7,6 +7,7 @@ color: "#a855f7"
 technologies: ["Vue.js", "Django", "PostgreSQL", "Redis"]
 link: https://erp-example.com
 order: 4
+images: []
 ---
 
 ## Visão Geral

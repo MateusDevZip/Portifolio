@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/sections/Footer.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -65,6 +66,13 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
 
     <!-- Divider -->
     <div class="border-t border-white/10"></div>
+
+    <!-- Project Gallery -->
+    <section class="px-[30px] lg:px-[60px] py-20 relative">
+      <div class="max-w-6xl mx-auto">
+        <ProjectGallery images={project.data.images} projectTitle={project.data.title} />
+      </div>
+    </section>
 
     <!-- Conteúdo Detalhado -->
     <section class="px-[30px] lg:px-[60px] py-20 relative">

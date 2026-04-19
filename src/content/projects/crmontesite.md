@@ -7,6 +7,7 @@ color: "#3b82f6"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
 link: null
 order: 1
+images: []
 ---
 
 ## Visão Geral
