@@ -92,6 +92,51 @@ import Footer from '../components/sections/Footer.astro';
         }
       }
 
+      // Skills animation - Intersection Observer
+      const aboutItems = document.querySelectorAll('.about-item');
+      const skillCitation = document.getElementById('skill-citation');
+
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+      };
+
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            if (skillCitation && entry.target.getAttribute('data-quote')) {
+              skillCitation.textContent = entry.target.getAttribute('data-quote');
+            }
+          }
+        });
+      }, observerOptions);
+
+      aboutItems.forEach(item => skillObserver.observe(item));
+
+      // Projects animation - Intersection Observer
+      const projectPreviews = document.querySelectorAll('.project-preview-item');
+      const projectLinks = document.querySelectorAll('.split-project-item');
+      const counterEl = document.getElementById('project-counter');
+
+      const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(projectPreviews).indexOf(entry.target);
+            if (index !== -1) {
+              projectLinks.forEach(link => link.classList.remove('active'));
+              projectPreviews.forEach(prev => prev.classList.remove('active'));
+
+              if (projectLinks[index]) projectLinks[index].classList.add('active');
+              if (projectPreviews[index]) projectPreviews[index].classList.add('active');
+              if (counterEl) counterEl.textContent = String(index + 1).padStart(2, '0');
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      projectPreviews.forEach(preview => projectObserver.observe(preview));
+
       // Custom cursor
       const customCursor = document.querySelector('.custom-cursor');
       const cursorFollower = document.querySelector('.cursor-follower');
