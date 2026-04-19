@@ -22,7 +22,7 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
 ---
 
 <BaseLayout title={`${project.data.title} — Mateus`} description={project.data.description}>
-  <Navbar />
+  <Navbar hideTitle={true} />
   <main class="relative z-10">
     <!-- Hero Section - Resumido -->
     <section class="pt-32 px-[30px] lg:px-[60px] pb-20 relative">
