@@ -23,33 +23,14 @@
 </section>
 
 <script>
-  // Hero reveal animation
-  if (typeof gsap !== 'undefined') {
-    const timeline = gsap.timeline();
-
-    // Animate hero title spans
+  // Simple reveal animation without GSAP
+  document.addEventListener('DOMContentLoaded', () => {
     const titleSpans = document.querySelectorAll('#hero-title span.block');
-    if (titleSpans.length > 0) {
-      titleSpans.forEach((span) => {
-        timeline.to(span, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power4.out'
-        }, 0.1);
-      });
-    }
-
-    // Animate scroll indicator
-    const scrollIndicator = document.querySelector('.spin-text');
-    if (scrollIndicator) {
-      gsap.to(scrollIndicator, {
-        y: 10,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut'
-      });
-    }
-  }
+    titleSpans.forEach((span, i) => {
+      setTimeout(() => {
+        span.style.transition = 'opacity 0.8s ease-out';
+        span.style.opacity = '1';
+      }, i * 100);
+    });
+  });
 </script>
