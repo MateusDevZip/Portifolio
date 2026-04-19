@@ -20,7 +20,7 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
 
       <div class="space-y-4" id="project-links">
         {sortedProjects.map((project, idx) => (
-          <a href={`/projetos/${project.slug}`} class="split-project-item flex justify-between items-center py-4 pl-6 cursor-pointer group" class:list={{ active: idx === 0 }}>
+          <a href={`./projetos/${project.slug}`} class="split-project-item flex justify-between items-center py-4 pl-6 cursor-pointer group" class:list={{ active: idx === 0 }}>
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-2">
                 <span class="text-white/40 text-xs font-space tracking-wider block">{project.data.year}</span>
@@ -43,7 +43,7 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
           <div class="relative z-20">
             <h4 class="text-2xl font-bold text-white mb-2">{project.data.title}</h4>
             <p class="text-white/80 text-lg md:text-xl font-space mb-8 max-w-md line-clamp-3">{project.data.description}</p>
-            <a href={`/projetos/${project.slug}`} class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black transition-colors text-white font-space font-medium text-sm">
+            <a href={`./projetos/${project.slug}`} class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black transition-colors text-white font-space font-medium text-sm">
               Ver Projeto <span class="text-lg">↗</span>
             </a>
           </div>

@@ -67,7 +67,7 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <!-- Previous Project -->
         {prevProject && (
-          <a href={`/projetos/${prevProject.slug}`} class="group">
+          <a href={`../projetos/${prevProject.slug}`} class="group">
             <p class="text-white/60 font-space text-sm uppercase tracking-widest mb-4">Projeto Anterior</p>
             <h3 class="text-[32px] lg:text-[40px] font-bold text-white uppercase group-hover:translate-x-2 transition-transform">
               {prevProject.data.title}
@@ -78,7 +78,7 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
 
         <!-- Next Project -->
         {nextProject && (
-          <a href={`/projetos/${nextProject.slug}`} class="group text-right lg:text-left">
+          <a href={`../projetos/${nextProject.slug}`} class="group text-right lg:text-left">
             <p class="text-white/60 font-space text-sm uppercase tracking-widest mb-4">Próximo Projeto</p>
             <h3 class="text-[32px] lg:text-[40px] font-bold text-white uppercase group-hover:-translate-x-2 transition-transform">
               {nextProject.data.title}
