@@ -8,7 +8,7 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
   <div class="grid lg:grid-cols-2 gap-12 lg:gap-24">
 
     <!-- Left: Project Names -->
-    <div class="lg:sticky lg:top-[120px] lg:h-[80vh] lg:self-start">
+    <div class="lg:sticky lg:top-[100px] xl:top-[120px] lg:self-start">
       <div class="flex items-end justify-between mb-4">
         <span id="project-counter" class="project-counter">01</span>
         <span class="text-white/20 font-space text-sm tracking-widest">/ {sortedProjects.length.toString().padStart(2, '0')}</span>
