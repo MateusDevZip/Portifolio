@@ -24,64 +24,49 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <ProjectLayout title={`${project.data.title} — Mateus`} description={project.data.description}>
-  <!-- Project Header with Tabs (Fixed) -->
-  <header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/[0.08]">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
-      <!-- Logo -->
-      <a href={baseUrl} class="text-white/80 hover:text-white font-bold uppercase tracking-widest text-sm transition-colors">
-        ← Mateus
-      </a>
-
-      <!-- Tabs Navigation (Hidden on Mobile) -->
+  <!-- TopAppBar -->
+  <header class="fixed top-0 w-full z-50 bg-[#0b1326]/80 backdrop-blur-md shadow-[0_20px_50px_rgba(0,46,106,0.15)]">
+    <div class="max-w-[1920px] mx-auto flex justify-between items-center px-8 h-20">
+      <div class="text-xl font-black tracking-tighter text-slate-50 uppercase">
+        {project.data.title}
+      </div>
       <nav class="hidden md:flex items-center gap-8">
-        <button data-tab="visao-geral" class="text-blue-400 border-b-2 border-blue-400 pb-1 font-semibold text-sm uppercase tracking-wide transition-colors cursor-pointer">
-          Overview
-        </button>
-        <button data-tab="stack" class="text-white/60 hover:text-white pb-1 font-semibold text-sm uppercase tracking-wide transition-colors cursor-pointer">
-          Stack
-        </button>
-        <button data-tab="funcionalidades" class="text-white/60 hover:text-white pb-1 font-semibold text-sm uppercase tracking-wide transition-colors cursor-pointer">
-          Features
-        </button>
-        <button id="tab-banco-dados" data-tab="banco-dados" class="text-white/60 hover:text-white pb-1 font-semibold text-sm uppercase tracking-wide transition-colors cursor-pointer">
-          Database
-        </button>
-        <button data-tab="resultados" class="text-white/60 hover:text-white pb-1 font-semibold text-sm uppercase tracking-wide transition-colors cursor-pointer">
-          Results
-        </button>
+        <button data-tab="visao-geral" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer active-tab">Overview</button>
+        <button data-tab="stack" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Stack</button>
+        <button data-tab="funcionalidades" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Features</button>
+        <button id="tab-banco-dados" data-tab="banco-dados" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Database</button>
+        <button data-tab="resultados" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Results</button>
       </nav>
-
-      <!-- Live Button -->
-      <div>
+      <div class="flex items-center gap-4">
         {project.data.link && (
-          <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="text-white/60 hover:text-white transition-colors">
-            <span class="text-lg">↗</span>
+          <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="active:scale-95 transition-transform duration-200">
+            <span class="material-symbols-outlined text-slate-400 hover:text-blue-400">open_in_new</span>
           </a>
         )}
+        <a href={baseUrl} class="active:scale-95 transition-transform duration-200">
+          <span class="material-symbols-outlined text-slate-400 hover:text-blue-400">home</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <main class="relative z-10 pt-24">
+  <main class="pt-32 pb-24 monolith-gradient min-h-screen">
     <!-- Hero Section -->
-    <section class="px-8 lg:px-16 py-20 border-b border-white/[0.08]">
-      <div class="max-w-7xl mx-auto">
-        <!-- Breadcrumb -->
-        <div class="flex items-center gap-3 font-mono text-sm tracking-widest text-white/40 uppercase mb-8">
-          <span>{project.data.category}</span>
-          <span class="w-8 h-[1px] bg-white/20"></span>
-          <span>{project.data.year}</span>
+    <section class="max-w-7xl mx-auto px-8 mb-20">
+      <div class="flex flex-col md:flex-row justify-between items-end gap-8 border-b border-outline-variant/20 pb-12">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 font-mono text-sm tracking-widest text-primary uppercase">
+            <span>{project.data.category}</span>
+            <span class="w-8 h-[1px] bg-outline-variant/50"></span>
+            <span>{project.data.year}</span>
+          </div>
+          <h1 class="text-7xl md:text-8xl font-black tracking-tighter text-slate-50">
+            {project.data.title}
+          </h1>
         </div>
-
-        <!-- Title -->
-        <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-black tracking-tighter text-white uppercase leading-[0.95] mb-12">
-          {project.data.title}
-        </h1>
-
-        <!-- Tech Badges -->
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-2">
           {project.data.technologies && project.data.technologies.map((tech) => (
-            <span class="px-4 py-1.5 rounded-full border border-white/10 text-xs font-mono bg-white/5 text-white/80 hover:bg-white/10 transition-colors">
+            <span class="px-4 py-1.5 rounded-full border border-outline-variant/30 text-xs font-mono bg-surface-container-low text-on-surface">
               {tech}
             </span>
           ))}
@@ -89,142 +74,136 @@ const baseUrl = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="w-full aspect-video relative overflow-hidden bg-gradient-to-b from-white/5 to-transparent">
-      {project.data.images && project.data.images.length > 0 ? (
-        <ProjectGallery images={project.data.images} projectTitle={project.data.title} />
-      ) : (
-        <div class="w-full h-full flex items-center justify-center bg-white/5">
-          <div class="text-center">
-            <div class="w-24 h-24 rounded-full mx-auto mb-6" style={{ backgroundColor: `${project.data.color}20` }}>
-              <div class="w-full h-full flex items-center justify-center">
-                <span class="text-4xl" style={{ color: project.data.color }}>📸</span>
-              </div>
+    <!-- Project Media -->
+    <section class="max-w-7xl mx-auto px-8 mb-24">
+      <div class="aspect-video w-full rounded-xl overflow-hidden bg-surface-container-low relative group">
+        {project.data.images && project.data.images.length > 0 ? (
+          <ProjectGallery images={project.data.images} projectTitle={project.data.title} />
+        ) : (
+          <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-container to-surface-container-low">
+            <div class="text-center">
+              <span class="material-symbols-outlined text-6xl text-primary/50 mb-4 block">image_not_supported</span>
+              <p class="text-slate-400 font-mono text-sm uppercase tracking-widest">No imagery available</p>
             </div>
-            <p class="text-white/40 font-mono text-sm uppercase tracking-widest">No project imagery</p>
           </div>
-        </div>
-      )}
+        )}
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0b1326] via-transparent to-transparent pointer-events-none"></div>
+      </div>
     </section>
 
-    <!-- Content Section with Tabs and Sidebar -->
-    <section class="px-8 lg:px-16 py-20">
-      <div class="max-w-7xl mx-auto">
-        <!-- Tab Bar (Mobile) -->
-        <div class="md:hidden mb-12 border-b border-white/[0.08] pb-4">
-          <div class="flex overflow-x-auto gap-4 -mx-8 px-8">
-            <button data-tab="visao-geral" class="tab-button-mobile text-white/60 hover:text-white pb-2 font-semibold text-xs uppercase tracking-wide transition-colors cursor-pointer whitespace-nowrap">
-              Overview
-            </button>
-            <button data-tab="stack" class="tab-button-mobile text-white/60 hover:text-white pb-2 font-semibold text-xs uppercase tracking-wide transition-colors cursor-pointer whitespace-nowrap">
-              Stack
-            </button>
-            <button data-tab="funcionalidades" class="tab-button-mobile text-white/60 hover:text-white pb-2 font-semibold text-xs uppercase tracking-wide transition-colors cursor-pointer whitespace-nowrap">
-              Features
-            </button>
-            <button data-tab="banco-dados" class="tab-button-mobile text-white/60 hover:text-white pb-2 font-semibold text-xs uppercase tracking-wide transition-colors cursor-pointer whitespace-nowrap">
-              Database
-            </button>
-            <button data-tab="resultados" class="tab-button-mobile text-white/60 hover:text-white pb-2 font-semibold text-xs uppercase tracking-wide transition-colors cursor-pointer whitespace-nowrap">
-              Results
-            </button>
-          </div>
+    <!-- Tabs Navigation -->
+    <section class="max-w-7xl mx-auto px-8 mb-16">
+      <div class="flex flex-wrap gap-x-12 gap-y-6 border-b border-outline-variant/10">
+        <button data-tab="visao-geral" class="pb-4 text-blue-500 border-b-2 border-blue-500 font-bold text-lg tracking-tight uppercase cursor-pointer active-tab-btn">Visão Geral</button>
+        <button data-tab="stack" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Stack Técnico</button>
+        <button data-tab="funcionalidades" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Funcionalidades</button>
+        <button id="btn-banco-dados" data-tab="banco-dados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Banco de Dados</button>
+        <button data-tab="resultados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Resultados</button>
+      </div>
+    </section>
+
+    <!-- Content Canvas (Asymmetric Layout) -->
+    <section class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-16">
+      <div class="md:col-span-8 space-y-12">
+        <!-- Tab Panels -->
+        <div id="panel-visao-geral" class="tab-panel prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
+          <!-- Visão Geral content will be inserted here -->
         </div>
+        <div id="panel-stack" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
+          <!-- Stack Técnico content will be inserted here -->
+        </div>
+        <div id="panel-funcionalidades" class="tab-panel hidden space-y-8">
+          <!-- Funcionalidades content will be inserted here -->
+        </div>
+        <div id="panel-banco-dados" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
+          <!-- Banco de Dados content will be inserted here -->
+        </div>
+        <div id="panel-resultados" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
+          <!-- Resultados content will be inserted here -->
+        </div>
+      </div>
 
-        <!-- Grid: Content + Sidebar -->
-        <div class="grid lg:grid-cols-[1fr_340px] gap-16">
-          <!-- Tab Panels -->
-          <div class="space-y-8">
-            <div id="panel-visao-geral" class="tab-panel prose prose-invert prose-headings:font-black prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300">
-              <!-- Visão Geral content will be inserted here -->
+      <!-- Sidebar -->
+      <div class="md:col-span-4 space-y-8">
+        <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
+          <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-blue-500">info</span>
+            Project Details
+          </h4>
+          <div class="space-y-4">
+            <div>
+              <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Category</p>
+              <p class="text-slate-300">{project.data.category}</p>
             </div>
-            <div id="panel-stack" class="tab-panel hidden prose prose-invert prose-headings:font-black prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300">
-              <!-- Stack Técnico content will be inserted here -->
+            <div>
+              <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Year</p>
+              <p class="text-slate-300">{project.data.year}</p>
             </div>
-            <div id="panel-funcionalidades" class="tab-panel hidden prose prose-invert prose-headings:font-black prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300">
-              <!-- Funcionalidades content will be inserted here -->
-            </div>
-            <div id="panel-banco-dados" class="tab-panel hidden prose prose-invert prose-headings:font-black prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300">
-              <!-- Banco de Dados content will be inserted here -->
-            </div>
-            <div id="panel-resultados" class="tab-panel hidden prose prose-invert prose-headings:font-black prose-headings:text-white prose-p:text-white/80 prose-p:leading-relaxed prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300">
-              <!-- Resultados content will be inserted here -->
-            </div>
-          </div>
-
-          <!-- Sidebar -->
-          <aside class="space-y-6">
-            <!-- Project Info Card -->
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-              <h3 class="font-mono text-xs uppercase tracking-widest text-white/60 mb-4">Sobre o Projeto</h3>
-              <div class="space-y-4">
-                <div>
-                  <p class="text-white/50 font-mono text-xs uppercase tracking-widest mb-1">Tipo</p>
-                  <p class="text-white text-sm">{project.data.category}</p>
-                </div>
-                <div>
-                  <p class="text-white/50 font-mono text-xs uppercase tracking-widest mb-1">Ano</p>
-                  <p class="text-white text-sm">{project.data.year}</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Technologies Card -->
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-              <h3 class="font-mono text-xs uppercase tracking-widest text-white/60 mb-4">Stack</h3>
-              <div class="space-y-2">
-                {project.data.technologies && project.data.technologies.map((tech) => (
-                  <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-                    <span class="text-white/80 text-sm font-mono">{tech}</span>
-                  </div>
+            <div>
+              <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Technologies</p>
+              <div class="flex flex-wrap gap-2">
+                {project.data.technologies && project.data.technologies.slice(0, 3).map((tech) => (
+                  <span class="px-2 py-1 rounded text-xs bg-surface-container border border-outline-variant/20 text-slate-300 font-mono">
+                    {tech}
+                  </span>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Links Card -->
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-              <h3 class="font-mono text-xs uppercase tracking-widest text-white/60 mb-4">Links</h3>
-              <div class="space-y-3">
-                {project.data.link && (
-                  <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="block text-blue-400 hover:text-blue-300 text-sm font-mono transition-colors">
-                    View Live ↗
-                  </a>
-                )}
-                <a href="https://github.com/DevZipMateus" target="_blank" rel="noopener noreferrer" class="block text-white/70 hover:text-white text-sm font-mono transition-colors">
-                  GitHub ↗
-                </a>
-              </div>
-            </div>
-          </aside>
+        <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
+          <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">link</span>
+            Links
+          </h4>
+          <div class="space-y-3">
+            {project.data.link && (
+              <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-mono transition-colors">
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                View Live
+              </a>
+            )}
+            <a href="https://github.com/DevZipMateus" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-slate-300 text-sm font-mono transition-colors">
+              <span class="material-symbols-outlined text-sm">code</span>
+              GitHub
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Navigation to Other Projects -->
-    <section class="border-t border-white/[0.08] px-8 lg:px-16 py-20">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <!-- Previous Project -->
-          {prevProject && (
-            <a href={`${baseUrl}projetos/${prevProject.slug}`} class="group">
-              <p class="text-white/30 font-mono text-xs uppercase tracking-widest mb-4">← Previous Project</p>
-              <h3 class="text-2xl md:text-3xl font-bold text-white uppercase group-hover:-translate-x-1 transition-transform">
-                {prevProject.data.title}
-              </h3>
-            </a>
-          )}
-
-          <!-- Next Project -->
-          {nextProject && (
-            <a href={`${baseUrl}projetos/${nextProject.slug}`} class="group md:text-right">
-              <p class="text-white/30 font-mono text-xs uppercase tracking-widest mb-4">Next Project →</p>
-              <h3 class="text-2xl md:text-3xl font-bold text-white uppercase group-hover:translate-x-1 transition-transform">
-                {nextProject.data.title}
-              </h3>
-            </a>
-          )}
+    <!-- Features Grid (Bento Style) - Only show for projects with funcionalidades -->
+    <div id="features-section" class="hidden">
+      <section class="max-w-7xl mx-auto px-8 mt-32">
+        <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-slate-500 mb-12 text-center">Core Functionalities</h2>
+        <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Features will be extracted from funcionalidades panel -->
         </div>
+      </section>
+    </div>
+
+    <!-- Project Navigation -->
+    <section class="max-w-7xl mx-auto px-8 mt-48 border-t border-outline-variant/20 pt-12">
+      <div class="flex flex-col md:flex-row justify-between gap-12">
+        {prevProject && (
+          <a href={`${baseUrl}projetos/${prevProject.slug}`} class="group">
+            <span class="text-xs font-mono text-slate-500 uppercase tracking-widest block mb-4">Previous Project</span>
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-slate-500 group-hover:text-blue-500 group-hover:-translate-x-2 transition-all">arrow_back</span>
+              <span class="text-2xl font-bold text-slate-50 group-hover:text-blue-500 transition-colors">{prevProject.data.title}</span>
+            </div>
+          </a>
+        )}
+        {nextProject && (
+          <a href={`${baseUrl}projetos/${nextProject.slug}`} class="group md:text-right">
+            <span class="text-xs font-mono text-slate-500 uppercase tracking-widest block mb-4">Next Project</span>
+            <div class="flex items-center justify-end gap-4">
+              <span class="text-2xl font-bold text-slate-50 group-hover:text-blue-500 transition-colors">{nextProject.data.title}</span>
+              <span class="material-symbols-outlined text-slate-500 group-hover:text-blue-500 group-hover:translate-x-2 transition-all">arrow_forward</span>
+            </div>
+          </a>
+        )}
       </div>
     </section>
   </main>
@@ -242,7 +221,6 @@ const baseUrl = import.meta.env.BASE_URL;
     document.addEventListener('DOMContentLoaded', () => {
       const contentContainer = document.getElementById('content-container');
 
-      // Define section mapping with expanded matchers for different markdown variations
       const SECTION_MAP = {
         'visão geral': 'panel-visao-geral',
         'stack técnico': 'panel-stack',
@@ -259,13 +237,12 @@ const baseUrl = import.meta.env.BASE_URL;
         const article = contentContainer.querySelector('article');
         if (article) {
           const h2Headings = Array.from(article.querySelectorAll('h2'));
-          const overflowContent = []; // For sections that don't match
+          const overflowContent = [];
 
           h2Headings.forEach((heading) => {
             const content = [];
             let currentNode = heading.nextElementSibling;
 
-            // Collect content until next h2
             while (currentNode && currentNode.tagName !== 'H2') {
               content.push(currentNode.cloneNode(true));
               currentNode = currentNode.nextElementSibling;
@@ -274,7 +251,6 @@ const baseUrl = import.meta.env.BASE_URL;
             const headingText = heading.textContent.toLowerCase().trim();
             let targetPanel = null;
 
-            // Find matching panel
             for (const [key, panelId] of Object.entries(SECTION_MAP)) {
               if (headingText.includes(key)) {
                 targetPanel = document.getElementById(panelId);
@@ -287,16 +263,14 @@ const baseUrl = import.meta.env.BASE_URL;
                 targetPanel.appendChild(element.cloneNode(true));
               });
             } else if (content.length > 0) {
-              // Store overflow content for visão-geral
               overflowContent.push(...content);
             }
           });
 
-          // Add overflow content to visão-geral if any
           if (overflowContent.length > 0) {
             const visaoGeralPanel = document.getElementById('panel-visao-geral');
             const separator = document.createElement('hr');
-            separator.className = 'my-8 border-white/10';
+            separator.className = 'my-8 border-outline-variant/20';
             visaoGeralPanel.appendChild(separator);
             overflowContent.forEach(element => {
               visaoGeralPanel.appendChild(element.cloneNode(true));
@@ -309,11 +283,13 @@ const baseUrl = import.meta.env.BASE_URL;
       ['stack', 'banco-dados', 'funcionalidades', 'resultados'].forEach(id => {
         const panel = document.getElementById(`panel-${id}`);
         const tab = document.querySelector(`[data-tab="${id}"]`);
-        const mobileTab = document.querySelector(`[data-tab="${id}"].tab-button-mobile`);
+        const mobileTab = document.querySelector(`#tab-${id}`);
+        const btnTab = document.querySelector(`#btn-${id}`);
 
         if (panel && tab && panel.children.length === 0) {
           tab.style.display = 'none';
           if (mobileTab) mobileTab.style.display = 'none';
+          if (btnTab) btnTab.style.display = 'none';
         }
       });
 
@@ -324,32 +300,26 @@ const baseUrl = import.meta.env.BASE_URL;
         button.addEventListener('click', () => {
           const targetTab = button.getAttribute('data-tab');
 
-          // Hide all panels
           document.querySelectorAll('.tab-panel').forEach(p => {
             p.classList.add('hidden');
           });
 
-          // Remove active state from all buttons
-          allTabButtons.forEach(b => {
-            b.classList.remove('active');
-            b.style.borderBottomColor = 'transparent';
-            b.style.color = 'rgb(107, 114, 128)';
+          document.querySelectorAll('[data-tab]').forEach(b => {
+            b.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500', 'active-tab', 'active-tab-btn');
+            b.classList.add('text-slate-400', 'text-slate-500');
           });
 
-          // Show selected panel
           const selectedPanel = document.getElementById(`panel-${targetTab}`);
           if (selectedPanel) {
             selectedPanel.classList.remove('hidden');
           }
 
-          // Set active state on clicked button
-          button.classList.add('active');
-          button.style.borderBottomColor = '#60a5fa';
-          button.style.color = '#60a5fa';
+          button.classList.remove('text-slate-400', 'text-slate-500');
+          button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
         });
       });
 
-      // Initialize Lenis smooth scroll
+      // Lenis smooth scroll
       if (typeof Lenis !== 'undefined') {
         const lenis = new Lenis({
           duration: 1.2,
