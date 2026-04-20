@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { images = [], projectTitle } = Astro.props;
-const resolvedImages = images.map(img => resolveAssetPath(img));
+const resolvedImages = images?.map(img => resolveAssetPath(img)) || [];
 
 ---
 
