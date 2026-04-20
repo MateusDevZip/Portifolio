@@ -12,18 +12,26 @@ images: []
 
 ## Visão Geral
 
-Sistema ERP completo e integrado para gestão de operações empresariais. Desenvolvido como uma solução full-stack com frontend dinâmico e backend robusto.
+**Sistema ERP completo e integrado** para gestão de operações empresariais. Desenvolvido como uma solução full-stack com frontend dinâmico e backend robusto para lidar com complexidade operacional.
 
-## Funcionalidades Principais
+### 🎯 Propósito
 
-- **Gestão de Estoques:** Controle em tempo real de entradas e saídas
-- **Emissão de NFs:** Integração com autoridades fiscais
-- **Relatórios Financeiros:** Dashboards customizáveis
-- **Controle de Vendas:** Pipeline e acompanhamento de pedidos
+Centralizar a gestão de estoques, vendas, finanças e documentação fiscal em uma plataforma unificada com visibilidade em tempo real.
 
-## Arquitetura
+### ⚙️ Funcionalidades Principais
 
-O projeto segue padrões de arquitetura limpa com separação clara entre camadas. O backend em Django fornece uma API REST robusta enquanto o Vue.js oferece uma interface reativa e responsiva.
+| Funcionalidade | Descrição |
+|---|---|
+| **Gestão de Estoques** | Controle em tempo real de entradas e saídas com alertas de estoque |
+| **Emissão de NFs** | Integração com autoridades fiscais para emissão automática |
+| **Relatórios Financeiros** | Dashboards customizáveis com métricas de receita e despesa |
+| **Controle de Vendas** | Pipeline e acompanhamento de pedidos do início ao fim |
+
+### 🏗️ Arquitetura
+
+O projeto segue **padrões de arquitetura limpa** com separação clara entre camadas:
+- **Backend em Django:** API REST robusta e escalável
+- **Frontend em Vue.js:** Interface reativa, responsiva e intuitiva
 
 ## Tecnologias Utilizadas
 

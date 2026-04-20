@@ -12,18 +12,22 @@ images: []
 
 ## Visão Geral
 
-Plataforma de streaming social completa que permite criadores de conteúdo transmitirem vídeo ao vivo para seus seguidores com interação em tempo real através de chat.
+**Plataforma de streaming social completa** que permite criadores de conteúdo transmitirem vídeo ao vivo para seus seguidores com interação em tempo real através de chat e reações.
 
-## Desafios Técnicos
+### 🎯 Propósito
+
+Criar uma plataforma de streaming acessível para criadores de conteúdo interagirem com seus seguidores em tempo real, com suporte a múltiplos dispositivos e qualidades de conexão.
+
+### ⚠️ Desafios Técnicos
 
 - Otimizar streaming de vídeo para diferentes velocidades de conexão
-- Implementar chat em tempo real escalável
-- Sincronizar estados entre múltiplos clientes
+- Implementar chat em tempo real escalável para múltiplos usuários
+- Sincronizar estados entre múltiplos clientes de forma eficiente
 - Gerenciar performance em dispositivos de baixa especificação
 
-## Soluções Implementadas
+### ✅ Soluções Implementadas
 
-Utilizamos React Native para código compartilhado iOS/Android. O backend foi construído com Node.js e WebSockets para comunicação em tempo real com suporte a compressão e fallback.
+Utilizamos **React Native** para código compartilhado iOS/Android. O **backend em Node.js** foi construído com **WebSockets** para comunicação em tempo real com suporte a compressão e fallback para conexões instáveis.
 
 ## Tecnologias Utilizadas
 

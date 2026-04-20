@@ -12,18 +12,22 @@ images: []
 
 ## Visão Geral
 
-Este projeto é uma plataforma de e-commerce escalável desenvolvida com as tecnologias mais modernas do mercado. A aplicação foi otimizada desde o início para performance e conversão de vendas.
+Este projeto é uma **plataforma de e-commerce escalável** desenvolvida com as tecnologias mais modernas do mercado. A aplicação foi otimizada desde o início para performance e conversão de vendas.
 
-## Desafios Enfrentados
+### 🎯 Propósito
+
+Criar uma loja virtual que converte, carrega rapidamente e escala para lidar com volumes altos de tráfego e transações simultâneas.
+
+### ⚠️ Desafios Enfrentados
 
 - Implementar um sistema de checkout seguro com Stripe
 - Otimizar imagens e assets para carregamento rápido
 - Gerenciar estado complexo de carrinho e pedidos
 - Garantir escalabilidade para lidar com picos de tráfego
 
-## Solução Implementada
+### ✅ Solução Implementada
 
-Utilizamos Next.js 14 com App Router para aproveitar Server Components e criar uma experiência ultra-rápida. O TailwindCSS foi essencial para manter um design consistente e responsivo.
+Utilizamos **Next.js 14** com App Router para aproveitar Server Components e criar uma experiência ultra-rápida. O **TailwindCSS** foi essencial para manter um design consistente e responsivo em todos os devices.
 
 ## Tecnologias Utilizadas
 

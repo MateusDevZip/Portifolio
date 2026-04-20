@@ -1,19 +1,15 @@
-export function getImagePath(path: string): string {
-  // In development, Astro doesn't apply the base path
-  // In production, we need the /Portifolio/ prefix which is handled by the build
-  // For public assets, we just need to ensure the path is correct
-  return path.startsWith('/') ? path : `/${path}`;
-}
-
-export function resolveAssetPath(relativePath: string): string {
-  // This resolves paths for static assets in public/
-  const isDev = import.meta.env.DEV;
-
-  if (isDev) {
-    // In dev, serve directly from public without the base prefix
-    return `/Portifolio${relativePath}`;
+export function resolveAssetPath(imagePath: string): string {
+  // If path already includes /Portifolio/, return as is
+  if (imagePath.includes('/Portifolio/')) {
+    return imagePath;
   }
 
-  // In production, the base path is applied automatically
-  return relativePath;
+  // Add /Portifolio/ prefix for both dev and prod
+  // - In dev: browser resolves /Portifolio/ directly to the server
+  // - In prod: Astro's base config doesn't double-apply it
+  if (imagePath.startsWith('/projects/')) {
+    return `/Portifolio${imagePath}`;
+  }
+
+  return imagePath;
 }

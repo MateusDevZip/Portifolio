@@ -8,10 +8,10 @@ interface Props {
 
 const { images = [], projectTitle } = Astro.props;
 const resolvedImages = images.map(img => resolveAssetPath(img));
+
 ---
 
-{resolvedImages && resolvedImages.length > 0 && (
-  <div class="w-full mb-16">
+<div class="w-full mb-16">
     <div class="relative w-full rounded-3xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10">
       <!-- Main Image -->
       <div class="relative w-full aspect-video bg-neutral-900 overflow-hidden">
@@ -51,7 +51,6 @@ const resolvedImages = images.map(img => resolveAssetPath(img));
       )}
     </div>
   </div>
-)}
 
 <script>
   document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {

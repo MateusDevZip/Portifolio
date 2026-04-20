@@ -46,10 +46,20 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
             )}
           </div>
 
-          <!-- Tecnologias -->
-          <div class="lg:col-span-1">
-            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-              <h3 class="text-sm uppercase tracking-widest text-white/60 font-space mb-6">Stack Técnico</h3>
+          <!-- Tecnologias - Oculto por padrão -->
+          <div class="lg:col-span-1 flex flex-col gap-4">
+            <button
+              id="tech-toggle"
+              class="w-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 rounded-2xl p-4 transition-all duration-300 flex items-center justify-between cursor-pointer"
+            >
+              <span class="text-sm uppercase tracking-widest text-white/60 font-space">Stack Técnico</span>
+              <span id="toggle-icon" class="text-white/60 transition-transform duration-300">▼</span>
+            </button>
+
+            <div
+              id="tech-container"
+              class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 max-h-0 overflow-hidden transition-all duration-300 opacity-0"
+            >
               <div class="space-y-3">
                 {project.data.technologies && project.data.technologies.map(tech => (
                   <div class="flex items-center gap-3 pb-3 border-b border-white/5 last:border-b-0">
@@ -74,12 +84,78 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
       </div>
     </section>
 
-    <!-- Conteúdo Detalhado -->
+    <!-- Conteúdo Detalhado com Grid -->
     <section class="px-[30px] lg:px-[60px] py-20 relative">
-      <div class="max-w-4xl mx-auto">
-        <article class="prose prose-invert max-w-4xl prose-headings:font-bold prose-headings:text-white prose-headings:text-2xl prose-headings:mt-12 prose-headings:mb-6 prose-p:text-white/80 prose-p:leading-relaxed prose-p:mb-6 prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
-          <Content />
-        </article>
+      <div class="max-w-6xl mx-auto">
+        <div id="content-grid" class="space-y-12">
+          <!-- Grid Layout para Visão Geral e Funcionalidades -->
+          <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Visão Geral -->
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+              <button class="section-toggle w-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border-b border-white/10 px-8 py-4 transition-all duration-300 flex items-center justify-between cursor-pointer" data-target="visao-geral-box">
+                <span class="text-sm uppercase tracking-widest text-white/60 font-space">Visão Geral</span>
+                <span class="toggle-icon text-white/60 transition-transform duration-300">▼</span>
+              </button>
+              <div id="visao-geral-box" class="content-box max-h-[2000px] overflow-hidden transition-all duration-300 px-8 py-8">
+                <!-- Visão Geral será inserida aqui -->
+              </div>
+            </div>
+
+            <!-- Funcionalidades -->
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+              <button class="section-toggle w-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border-b border-white/10 px-8 py-4 transition-all duration-300 flex items-center justify-between cursor-pointer" data-target="funcionalidades-box">
+                <span class="text-sm uppercase tracking-widest text-white/60 font-space">Funcionalidades</span>
+                <span class="toggle-icon text-white/60 transition-transform duration-300">▼</span>
+              </button>
+              <div id="funcionalidades-box" class="content-box max-h-[2000px] overflow-hidden transition-all duration-300 px-8 py-8">
+                <!-- Funcionalidades serão inseridas aqui -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Grid Layout para Stack Técnico e Banco de Dados -->
+          <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Stack Técnico -->
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+              <button class="section-toggle w-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border-b border-white/10 px-8 py-4 transition-all duration-300 flex items-center justify-between cursor-pointer" data-target="stack-box">
+                <span class="text-sm uppercase tracking-widest text-white/60 font-space">Stack Técnico</span>
+                <span class="toggle-icon text-white/60 transition-transform duration-300">▼</span>
+              </button>
+              <div id="stack-box" class="content-box max-h-[2000px] overflow-hidden transition-all duration-300 px-8 py-8">
+                <!-- Stack Técnico será inserido aqui -->
+              </div>
+            </div>
+
+            <!-- Banco de Dados -->
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+              <button class="section-toggle w-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border-b border-white/10 px-8 py-4 transition-all duration-300 flex items-center justify-between cursor-pointer" data-target="banco-dados-box">
+                <span class="text-sm uppercase tracking-widest text-white/60 font-space">Banco de Dados</span>
+                <span class="toggle-icon text-white/60 transition-transform duration-300">▼</span>
+              </button>
+              <div id="banco-dados-box" class="content-box max-h-[2000px] overflow-hidden transition-all duration-300 px-8 py-8">
+                <!-- Banco de Dados será inserido aqui -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Impacto - Full Width -->
+          <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+            <button class="section-toggle w-full bg-white/5 hover:bg-white/10 backdrop-blur-sm border-b border-white/10 px-8 py-4 transition-all duration-300 flex items-center justify-between cursor-pointer" data-target="impacto-box">
+              <span class="text-sm uppercase tracking-widest text-white/60 font-space">Resultados & Impacto</span>
+              <span class="toggle-icon text-white/60 transition-transform duration-300">▼</span>
+            </button>
+            <div id="impacto-box" class="content-box max-h-[2000px] overflow-hidden transition-all duration-300 px-8 py-8">
+              <!-- Impacto será inserido aqui -->
+            </div>
+          </div>
+
+          <!-- Hidden container para renderizar o markdown -->
+          <div id="content-container" class="hidden">
+            <article class="prose prose-invert prose-headings:font-bold prose-headings:text-white prose-headings:text-2xl prose-headings:mt-12 prose-headings:mb-6 prose-p:text-white/80 prose-p:leading-relaxed prose-p:mb-6 prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
+              <Content />
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -116,7 +192,155 @@ const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allPro
   <Footer />
 
   <script>
-    // Initialize scripts for project page
+    // Reorganizar conteúdo em grid
+    document.addEventListener('DOMContentLoaded', () => {
+      const contentContainer = document.getElementById('content-container');
+      const visaoGeralBox = document.getElementById('visao-geral-box');
+      const funcionalidadesBox = document.getElementById('funcionalidades-box');
+      const stackBox = document.getElementById('stack-box');
+      const bancoDadosBox = document.getElementById('banco-dados-box');
+      const impactoBox = document.getElementById('impacto-box');
+
+      if (contentContainer) {
+        const article = contentContainer.querySelector('article');
+        if (article) {
+          // Apenas procurar por h2 (seções principais)
+          const h2Headings = Array.from(article.querySelectorAll('h2'));
+
+          h2Headings.forEach((heading) => {
+            const content = [];
+            let currentNode = heading.nextElementSibling;
+
+            // Coletar conteúdo até o próximo h2
+            while (currentNode && currentNode.tagName !== 'H2') {
+              content.push(currentNode.cloneNode(true));
+              currentNode = currentNode.nextElementSibling;
+            }
+
+            // Determinar qual box deve receber o conteúdo
+            const headingText = heading.textContent.toLowerCase().trim();
+            let targetBox = null;
+
+            if (headingText.includes('visão geral')) {
+              targetBox = visaoGeralBox;
+            } else if (headingText.includes('funcionalidade')) {
+              targetBox = funcionalidadesBox;
+            } else if (headingText.includes('stack técnico')) {
+              targetBox = stackBox;
+            } else if (headingText.includes('banco de dados')) {
+              targetBox = bancoDadosBox;
+            } else if (headingText.includes('resultado') || headingText.includes('impacto')) {
+              targetBox = impactoBox;
+            }
+
+            if (targetBox && content.length > 0) {
+              // Adicionar conteúdo ao box (sem adicionar heading de novo)
+              content.forEach(element => {
+                const cloned = element.cloneNode(true);
+                if (cloned.classList) {
+                  cloned.classList.add('prose-p:text-white/80', 'prose-p:leading-relaxed', 'prose-p:mb-4', 'prose-a:text-blue-400', 'prose-strong:text-white');
+                }
+                targetBox.appendChild(cloned);
+              });
+            }
+          });
+        }
+      }
+
+      // Tech icons mapping
+      const techIcons = {
+        'React': '⚛️',
+        'TypeScript': '📘',
+        'TailwindCSS': '🎨',
+        'Supabase': '🔥',
+        'shadcn/ui': '🎭',
+        'Vite': '⚡',
+        'Next.js': '▲',
+        'Node.js': '💚',
+        'PostgreSQL': '🐘',
+        'Redis': '📍',
+        'Vue.js': '💚',
+        'Django': '🐍',
+        'Firebase': '🔥',
+        'Stripe': '💳',
+        'WebSockets': '🔌',
+        'Docker': '🐳',
+        'AWS': '☁️'
+      };
+
+      // Add icons to technology lists in Stack Técnico sections
+      const stackSections = document.querySelectorAll('#stack-box');
+      stackSections.forEach(section => {
+        const listItems = section.querySelectorAll('strong, li');
+        listItems.forEach(item => {
+          const text = item.textContent.trim();
+          // Check if text matches a tech name
+          for (const [tech, icon] of Object.entries(techIcons)) {
+            if (text.includes(tech) && !text.includes(icon)) {
+              item.textContent = `${icon} ${text}`;
+              break;
+            }
+          }
+        });
+      });
+
+      // Grid sections toggle
+      const sectionToggles = document.querySelectorAll('.section-toggle');
+      const sectionStates = new Map();
+
+      sectionToggles.forEach(button => {
+        const targetId = button.getAttribute('data-target');
+        const contentBox = document.getElementById(targetId);
+        const icon = button.querySelector('.toggle-icon');
+
+        // Inicializar estado como expandido
+        sectionStates.set(targetId, true);
+
+        button.addEventListener('click', () => {
+          const isOpen = sectionStates.get(targetId);
+          sectionStates.set(targetId, !isOpen);
+
+          if (!isOpen) {
+            // Abrir
+            contentBox.style.maxHeight = contentBox.scrollHeight + 'px';
+            contentBox.style.paddingTop = '2rem';
+            contentBox.style.paddingBottom = '2rem';
+            icon.style.transform = 'rotate(180deg)';
+          } else {
+            // Fechar - sem espaço vazio
+            contentBox.style.maxHeight = '0px';
+            contentBox.style.paddingTop = '0';
+            contentBox.style.paddingBottom = '0';
+            icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+
+      // Stack Técnico Toggle (original)
+      const toggle = document.getElementById('tech-toggle');
+      const container = document.getElementById('tech-container');
+      const techIcon = document.getElementById('toggle-icon');
+      let isOpen = false;
+
+      if (toggle && container) {
+        toggle.addEventListener('click', () => {
+          isOpen = !isOpen;
+
+          if (isOpen) {
+            const height = container.scrollHeight;
+            container.style.maxHeight = height + 'px';
+            container.classList.remove('opacity-0');
+            techIcon.style.transform = 'rotate(180deg)';
+          } else {
+            container.style.maxHeight = '0px';
+            container.classList.add('opacity-0');
+            techIcon.style.transform = 'rotate(0deg)';
+          }
+        });
+      }
+    });
+
+    // Initialize other scripts for project page
     document.addEventListener('DOMContentLoaded', async () => {
       // Lenis initialization
       if (typeof Lenis !== 'undefined') {
