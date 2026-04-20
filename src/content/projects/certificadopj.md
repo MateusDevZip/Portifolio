@@ -7,7 +7,7 @@ color: "#10b981"
 technologies: ["WordPress", "Divi Builder", "Elementor", "Stripe", "Make.com", "RD Station", "Exact Spotter", "Google Sheets", "Webhooks"]
 link: https://certificadopj.com.br
 order: 4
-images: ["/Portifolio/projects/certificadopj/certificado1.jpg", "/Portifolio/projects/certificadopj/certificado2.jpg", "/Portifolio/projects/certificadopj/make.png"]
+images: ["/projects/certificadopj/certificado1.jpg", "/projects/certificadopj/certificado2.jpg", "/projects/certificadopj/make.png"]
 ---
 
 ## Visão Geral

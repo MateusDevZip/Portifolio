@@ -7,7 +7,7 @@ color: "#3b82f6"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
 link: null
 order: 1
-images: ["/Portifolio/projects/crmontesite/crm1.jpg", "/Portifolio/projects/crmontesite/crm2.jpg", "/Portifolio/projects/crmontesite/crm3.jpg"]
+images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm2.jpg", "/projects/crmontesite/crm3.jpg"]
 ---
 
 ## Visão Geral
