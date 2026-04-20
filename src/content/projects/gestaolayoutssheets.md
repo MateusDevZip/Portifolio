@@ -7,37 +7,39 @@ color: "#22c55e"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui", "Vite", "Google Sheets API"]
 link: null
 order: 2
-images: []
+images: ["/Portifolio/projects/gestaolayoutssheets/layout1.jpg", "/Portifolio/projects/gestaolayoutssheets/layout2.jpg"]
 ---
 
 ## Visão Geral
 
-### O que é a Plataforma
+**Gestão de Layouts Google Sheets** é uma plataforma de automação que conecta Google Sheets com sistemas de gestão de layouts. Elimina trabalho manual repetitivo através de importação automática, validação de dados em tempo real e geração de relatórios dinâmicos.
 
-Gestão de Layouts Google Sheets é uma plataforma de automação que conecta Google Sheets com sistemas de gestão de layouts. Elimina trabalho manual repetitivo através de importação automática, validação de dados em tempo real e geração de relatórios dinâmicos.
-
-### Propósito
+### 🎯 Propósito
 
 Reduzir o tempo gasto em tarefas manuais de gestão de layouts, automatizar validação de dados e fornecer insights através de um dashboard de KPIs em tempo real. Ideal para equipes que trabalham com grandes volumes de dados estruturados.
 
-### Público-Alvo
+### 👥 Público-Alvo
+
+**Quem se beneficia deste sistema:**
 
 - Agências de design com múltiplos layouts
 - Empresas de produção gráfica
 - Equipes de marketing gerenciando ativos
 - Qualquer organização com fluxos de dados no Google Sheets
 
-### Benefícios Principais
+### ⚡ Benefícios Principais
 
-- **Automatização:** Importação automática sem intervenção manual
-- **Validação:** Detecção automática de erros e inconsistências
-- **Dashboard:** Visualização de KPIs em tempo real
-- **Integração:** Conecta seamlessly com Google Sheets existentes
-- **Exportação:** Relatórios automáticos e customizáveis
+| Benefício | Descrição |
+|-----------|-----------|
+| **Automatização** | Importação automática sem intervenção manual |
+| **Validação** | Detecção automática de erros e inconsistências |
+| **Dashboard** | Visualização de KPIs em tempo real |
+| **Integração** | Conecta seamlessly com Google Sheets existentes |
+| **Exportação** | Relatórios automáticos e customizáveis |
 
-### Contexto de Criação
+### 📖 Contexto de Criação
 
-Desenvolvido com Lovable (plataforma de IA para web apps) e refinado com ajustes específicos para automação. Utiliza React moderno com integração direta ao Google Sheets API para sincronização bidirecional.
+Desenvolvido com **Lovable** (plataforma de IA para web apps) e refinado com ajustes específicos para automação. Utiliza **React moderno** com integração direta ao **Google Sheets API** para sincronização bidirecional de dados.
 
 ---
 
