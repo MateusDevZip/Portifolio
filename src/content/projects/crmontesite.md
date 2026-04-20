@@ -8,6 +8,16 @@ technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
 link: null
 order: 1
 images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm2.jpg", "/projects/crmontesite/crm3.jpg"]
+metrics:
+  - value: "50+"
+    label: "Clientes Ativos"
+    color: blue
+  - value: "35%"
+    label: "Aumento em Produtividade"
+    color: green
+  - value: "99.9%"
+    label: "Uptime de Sincronização"
+    color: white
 ---
 
 ## Visão Geral

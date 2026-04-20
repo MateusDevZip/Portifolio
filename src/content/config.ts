@@ -9,6 +9,13 @@ const projects = defineCollection({
     color: z.string(),
     technologies: z.array(z.string()).optional(),
     link: z.string().url().optional().nullable(),
+    images: z.array(z.string()).optional(),
+    order: z.number().optional(),
+    metrics: z.array(z.object({
+      value: z.string(),
+      label: z.string(),
+      color: z.enum(['blue', 'green', 'white']).optional(),
+    })).optional(),
   })
 });
 

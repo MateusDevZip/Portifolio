@@ -31,21 +31,19 @@ const baseUrl = import.meta.env.BASE_URL;
         {project.data.title}
       </div>
       <nav class="hidden md:flex items-center gap-8">
-        <button data-tab="visao-geral" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer active-tab">Overview</button>
-        <button data-tab="stack" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Stack</button>
-        <button data-tab="funcionalidades" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Features</button>
-        <button id="tab-banco-dados" data-tab="banco-dados" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Database</button>
-        <button data-tab="resultados" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300 cursor-pointer">Results</button>
+        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Overview</a>
+        <a href="#" class="text-blue-500 font-medium">Stack</a>
+        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Features</a>
+        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Database</a>
+        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Results</a>
       </nav>
       <div class="flex items-center gap-4">
-        {project.data.link && (
-          <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="active:scale-95 transition-transform duration-200">
-            <span class="material-symbols-outlined text-slate-400 hover:text-blue-400">open_in_new</span>
-          </a>
-        )}
-        <a href={baseUrl} class="active:scale-95 transition-transform duration-200">
-          <span class="material-symbols-outlined text-slate-400 hover:text-blue-400">home</span>
-        </a>
+        <button class="active:scale-95 transition-transform duration-200">
+          <span class="material-symbols-outlined text-slate-400 hover:text-blue-400">terminal</span>
+        </button>
+        <button class="active:scale-95 transition-transform duration-200">
+          <span class="material-symbols-outlined text-slate-400 hover:text-blue-400">code</span>
+        </button>
       </div>
     </div>
   </header>
@@ -82,8 +80,8 @@ const baseUrl = import.meta.env.BASE_URL;
         ) : (
           <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-container to-surface-container-low">
             <div class="text-center">
-              <span class="material-symbols-outlined text-6xl text-primary/50 mb-4 block">image_not_supported</span>
-              <p class="text-slate-400 font-mono text-sm uppercase tracking-widest">No imagery available</p>
+              <span class="material-symbols-outlined text-6xl text-primary/50 mb-4 block">image</span>
+              <p class="text-slate-400 font-mono text-sm uppercase tracking-widest">No imagery</p>
             </div>
           </div>
         )}
@@ -94,10 +92,10 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- Tabs Navigation -->
     <section class="max-w-7xl mx-auto px-8 mb-16">
       <div class="flex flex-wrap gap-x-12 gap-y-6 border-b border-outline-variant/10">
-        <button data-tab="visao-geral" class="pb-4 text-blue-500 border-b-2 border-blue-500 font-bold text-lg tracking-tight uppercase cursor-pointer active-tab-btn">Visão Geral</button>
+        <button data-tab="visao-geral" class="pb-4 text-blue-500 border-b-2 border-blue-500 font-bold text-lg tracking-tight uppercase cursor-pointer">Visão Geral</button>
         <button data-tab="stack" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Stack Técnico</button>
         <button data-tab="funcionalidades" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Funcionalidades</button>
-        <button id="btn-banco-dados" data-tab="banco-dados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Banco de Dados</button>
+        <button data-tab="banco-dados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Banco de Dados</button>
         <button data-tab="resultados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Resultados</button>
       </div>
     </section>
@@ -106,13 +104,13 @@ const baseUrl = import.meta.env.BASE_URL;
     <section class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-16">
       <div class="md:col-span-8 space-y-12">
         <!-- Tab Panels -->
-        <div id="panel-visao-geral" class="tab-panel prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
+        <div id="panel-visao-geral" class="tab-panel space-y-8">
           <!-- Visão Geral content will be inserted here -->
         </div>
-        <div id="panel-stack" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
+        <div id="panel-stack" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-outline-variant/10">
           <!-- Stack Técnico content will be inserted here -->
         </div>
-        <div id="panel-funcionalidades" class="tab-panel hidden space-y-8">
+        <div id="panel-funcionalidades" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
           <!-- Funcionalidades content will be inserted here -->
         </div>
         <div id="panel-banco-dados" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
@@ -125,63 +123,57 @@ const baseUrl = import.meta.env.BASE_URL;
 
       <!-- Sidebar -->
       <div class="md:col-span-4 space-y-8">
-        <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
-          <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
-            <span class="material-symbols-outlined text-blue-500">info</span>
-            Project Details
-          </h4>
-          <div class="space-y-4">
-            <div>
-              <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Category</p>
-              <p class="text-slate-300">{project.data.category}</p>
-            </div>
-            <div>
-              <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Year</p>
-              <p class="text-slate-300">{project.data.year}</p>
-            </div>
-            <div>
-              <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Technologies</p>
-              <div class="flex flex-wrap gap-2">
-                {project.data.technologies && project.data.technologies.slice(0, 3).map((tech) => (
-                  <span class="px-2 py-1 rounded text-xs bg-surface-container border border-outline-variant/20 text-slate-300 font-mono">
-                    {tech}
+        {project.data.metrics && project.data.metrics.length > 0 ? (
+          <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
+            <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-500">analytics</span>
+              Impacto Imediato
+            </h4>
+            <ul class="space-y-6">
+              {project.data.metrics.map((metric) => (
+                <li class="flex flex-col">
+                  <span class={`text-4xl font-black ${
+                    metric.color === 'blue' ? 'text-blue-500' :
+                    metric.color === 'green' ? 'text-secondary' :
+                    'text-slate-50'
+                  }`}>
+                    {metric.value}
                   </span>
-                ))}
+                  <span class="text-xs font-mono uppercase text-slate-500 tracking-tighter">
+                    {metric.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
+            <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-500">info</span>
+              Sobre o Projeto
+            </h4>
+            <div class="space-y-4">
+              <div>
+                <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Tipo</p>
+                <p class="text-slate-300">{project.data.category}</p>
+              </div>
+              <div>
+                <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Ano</p>
+                <p class="text-slate-300">{project.data.year}</p>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
-          <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
-            <span class="material-symbols-outlined text-secondary">link</span>
-            Links
-          </h4>
-          <div class="space-y-3">
-            {project.data.link && (
-              <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-mono transition-colors">
-                <span class="material-symbols-outlined text-sm">open_in_new</span>
-                View Live
-              </a>
-            )}
-            <a href="https://github.com/DevZipMateus" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-400 hover:text-slate-300 text-sm font-mono transition-colors">
-              <span class="material-symbols-outlined text-sm">code</span>
-              GitHub
-            </a>
-          </div>
-        </div>
+        )}
       </div>
     </section>
 
-    <!-- Features Grid (Bento Style) - Only show for projects with funcionalidades -->
-    <div id="features-section" class="hidden">
-      <section class="max-w-7xl mx-auto px-8 mt-32">
-        <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-slate-500 mb-12 text-center">Core Functionalities</h2>
-        <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Features will be extracted from funcionalidades panel -->
-        </div>
-      </section>
-    </div>
+    <!-- Features Grid (Bento Style) -->
+    <section id="features-section" class="hidden max-w-7xl mx-auto px-8 mt-32">
+      <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-slate-500 mb-12 text-center">Core Functionalities</h2>
+      <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Features will be extracted from funcionalidades panel -->
+      </div>
+    </section>
 
     <!-- Project Navigation -->
     <section class="max-w-7xl mx-auto px-8 mt-48 border-t border-outline-variant/20 pt-12">
@@ -279,19 +271,98 @@ const baseUrl = import.meta.env.BASE_URL;
         }
       }
 
+      // Format visao-geral panel with special styling
+      const visaoGeralPanel = document.getElementById('panel-visao-geral');
+      if (visaoGeralPanel && visaoGeralPanel.children.length > 0) {
+        const h2 = visaoGeralPanel.querySelector('h2');
+        if (h2) {
+          h2.className = 'text-3xl font-bold text-slate-50 tracking-tight mb-6';
+        }
+        const p = visaoGeralPanel.querySelector('p');
+        if (p) {
+          p.className = 'text-xl text-slate-400 leading-relaxed font-light mb-8';
+        }
+        // Convert h3 + p pairs to colored cards
+        const h3s = Array.from(visaoGeralPanel.querySelectorAll('h3'));
+        if (h3s.length > 0) {
+          const cardsContainer = document.createElement('div');
+          cardsContainer.className = 'grid grid-cols-1 sm:grid-cols-2 gap-8';
+
+          h3s.forEach((h3, idx) => {
+            const p = h3.nextElementSibling;
+            if (p && p.tagName === 'P') {
+              const card = document.createElement('div');
+              const borderColor = idx === 0 ? 'border-blue-500' : 'border-secondary';
+              const textColor = idx === 0 ? 'text-blue-500' : 'text-secondary';
+
+              card.className = `p-8 rounded-xl bg-surface-container-low border-l-4 ${borderColor}`;
+              card.innerHTML = `
+                <h3 class="font-mono text-xs ${textColor} mb-2 uppercase tracking-widest">${h3.textContent}</h3>
+                <p class="text-slate-300">${p.textContent}</p>
+              `;
+              cardsContainer.appendChild(card);
+              h3.style.display = 'none';
+              p.style.display = 'none';
+            }
+          });
+
+          if (cardsContainer.children.length > 0) {
+            visaoGeralPanel.appendChild(cardsContainer);
+          }
+        }
+      }
+
       // Hide empty tabs
       ['stack', 'banco-dados', 'funcionalidades', 'resultados'].forEach(id => {
         const panel = document.getElementById(`panel-${id}`);
-        const tab = document.querySelector(`[data-tab="${id}"]`);
-        const mobileTab = document.querySelector(`#tab-${id}`);
-        const btnTab = document.querySelector(`#btn-${id}`);
+        const btn = document.querySelector(`[data-tab="${id}"]`);
 
-        if (panel && tab && panel.children.length === 0) {
-          tab.style.display = 'none';
-          if (mobileTab) mobileTab.style.display = 'none';
-          if (btnTab) btnTab.style.display = 'none';
+        if (panel && btn && panel.children.length === 0) {
+          btn.style.display = 'none';
         }
       });
+
+      // Build bento grid from funcionalidades
+      const funcPanel = document.getElementById('panel-funcionalidades');
+      if (funcPanel && funcPanel.children.length > 0) {
+        document.getElementById('features-section').classList.remove('hidden');
+
+        const h3s = Array.from(funcPanel.querySelectorAll('h3'));
+        const grid = document.getElementById('features-grid');
+
+        const iconMap = {
+          'email': 'mail', 'e-mail': 'mail', 'integração': 'mail',
+          'pipeline': 'account_tree', 'vendas': 'account_tree',
+          'permiss': 'security', 'permissões': 'security',
+          'arquitetura': 'database', 'dados': 'database'
+        };
+
+        h3s.forEach((h3, idx) => {
+          const p = h3.nextElementSibling;
+          if (p && (p.tagName === 'P' || p.tagName === 'DIV')) {
+            const title = h3.textContent;
+            let icon = 'widgets';
+            for (const [key, val] of Object.entries(iconMap)) {
+              if (title.toLowerCase().includes(key)) {
+                icon = val;
+                break;
+              }
+            }
+
+            const span = idx % 3 === 0 && idx < h3s.length - 1 ? 2 : 1;
+            const cardColor = idx === 0 ? 'text-blue-500' : idx === 1 ? 'text-secondary' : idx === 2 ? 'text-tertiary' : 'text-primary';
+
+            const card = document.createElement('div');
+            card.className = `md:col-span-${span} bg-surface-container-low p-10 rounded-2xl group hover:bg-surface-container-high transition-all duration-300`;
+            card.innerHTML = `
+              <span class="material-symbols-outlined text-4xl ${cardColor} mb-6 group-hover:scale-110 transition-transform">${icon}</span>
+              <h3 class="text-2xl font-bold text-slate-50 mb-4">${title}</h3>
+              <p class="text-slate-400">${p.textContent}</p>
+            `;
+            grid.appendChild(card);
+          }
+        });
+      }
 
       // Tab functionality
       const allTabButtons = document.querySelectorAll('[data-tab]');
@@ -305,8 +376,8 @@ const baseUrl = import.meta.env.BASE_URL;
           });
 
           document.querySelectorAll('[data-tab]').forEach(b => {
-            b.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500', 'active-tab', 'active-tab-btn');
-            b.classList.add('text-slate-400', 'text-slate-500');
+            b.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
+            b.classList.add('text-slate-500', 'hover:text-slate-300');
           });
 
           const selectedPanel = document.getElementById(`panel-${targetTab}`);
@@ -314,7 +385,7 @@ const baseUrl = import.meta.env.BASE_URL;
             selectedPanel.classList.remove('hidden');
           }
 
-          button.classList.remove('text-slate-400', 'text-slate-500');
+          button.classList.remove('text-slate-500', 'hover:text-slate-300');
           button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
         });
       });
@@ -325,12 +396,7 @@ const baseUrl = import.meta.env.BASE_URL;
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           direction: 'vertical',
-          gestureDirection: 'vertical',
           smooth: true,
-          mouseMultiplier: 1,
-          smoothTouch: false,
-          touchMultiplier: 2,
-          infinite: false,
         });
 
         function raf(time) {
@@ -345,29 +411,22 @@ const baseUrl = import.meta.env.BASE_URL;
       const cursorFollower = document.querySelector('.cursor-follower');
 
       if (customCursor && cursorFollower) {
-        let mouseX = 0;
-        let mouseY = 0;
-        let followerX = 0;
-        let followerY = 0;
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
-
           customCursor.style.left = mouseX + 'px';
           customCursor.style.top = mouseY + 'px';
           customCursor.classList.add('visible');
-
           cursorFollower.classList.add('visible');
         });
 
         function animateFollower() {
           followerX += (mouseX - followerX) * 0.2;
           followerY += (mouseY - followerY) * 0.2;
-
           cursorFollower.style.left = followerX + 'px';
           cursorFollower.style.top = followerY + 'px';
-
           requestAnimationFrame(animateFollower);
         }
 
