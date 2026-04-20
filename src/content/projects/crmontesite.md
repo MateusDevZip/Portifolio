@@ -7,35 +7,44 @@ color: "#3b82f6"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
 link: null
 order: 1
-images: []
+images: ["/Portifolio/projects/crmontesite/crm1.jpg", "/Portifolio/projects/crmontesite/crm2.jpg", "/Portifolio/projects/crmontesite/crm3.jpg"]
 ---
 
 ## Visão Geral
 
-O CRM Monte Site é um sistema completo de gestão de relacionamento com clientes (CRM) desenvolvido com React, TypeScript e Supabase. Centraliza a gestão de projetos, leads, vendas e relacionamento com clientes em uma única plataforma intuitiva e poderosa.
+O **CRM Monte Site** é um sistema completo de gestão de relacionamento com clientes (CRM) desenvolvido com React, TypeScript e Supabase. Centraliza a gestão de projetos, leads, vendas e relacionamento com clientes em uma única plataforma intuitiva e poderosa.
 
-### Propósito
+### 🎯 Propósito
 
-Facilitar o fluxo de trabalho de equipes de vendas e desenvolvimento, desde a captura de leads até a entrega de projetos. Oferece visibilidade em tempo real, automação de workflows e integração com ferramentas externas como Hostinger.
+Facilitar o fluxo de trabalho de equipes de vendas e desenvolvimento, desde a captura de leads até a entrega de projetos:
 
-### Público-Alvo
+- Visibilidade em tempo real de todo o pipeline
+- Automação de workflows para leads e projetos
+- Integração com ferramentas externas como Hostinger
+- Consolidação de dados em um único lugar
+
+### 👥 Público-Alvo
+
+**Quem se beneficia deste sistema:**
 
 - Agências de criação de websites
 - Empresas de consultoria digital
 - Prestadores de serviço (desenvolvedores, designers)
 - Pequenas e médias empresas (PMEs)
 
-### Benefícios Principais
+### ⚡ Benefícios Principais
 
-- **Centralização:** Todos os dados de clientes e projetos em um só lugar
-- **Automação:** Fluxos automatizados de captura e gestão de leads
-- **Integração Hostinger:** Gerenciamento direto de domínios e DNS
-- **Dashboard em Tempo Real:** Visualização de métricas e KPIs
-- **Escalabilidade:** Suporta múltiplos usuários e projetos simultâneos
+| Benefício | Descrição |
+|-----------|-----------|
+| **Centralização** | Todos os dados de clientes e projetos em um só lugar |
+| **Automação** | Fluxos automatizados de captura e gestão de leads |
+| **Integração** | Gerenciamento direto de domínios e DNS via Hostinger |
+| **Tempo Real** | Dashboard com visualização de métricas e KPIs atualizados |
+| **Escalabilidade** | Suporta múltiplos usuários e projetos simultâneos |
 
-### Contexto de Criação
+### 📖 Contexto de Criação
 
-Desenvolvido inicialmente com Lovable (plataforma de IA para web apps), depois refinado e customizado para atender necessidades específicas de gestão empresarial. Utiliza tecnologias modernas para garantir performance e confiabilidade.
+Desenvolvido inicialmente com **Lovable** (plataforma de IA para web apps), depois refinado e customizado para atender necessidades específicas de gestão empresarial. O sistema evoluiu para utilizar tecnologias modernas que garantem performance, confiabilidade e escalabilidade.
 
 ---
 
