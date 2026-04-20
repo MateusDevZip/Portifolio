@@ -1,5 +1,5 @@
 export default {
-  content: ["./index.html", "./projeto1.html", "./projeto2.html", "./projeto3.html", "./src/**/*.js"],
+  content: ["./src/**/*.{astro,html,js,ts}"],
   theme: {
     extend: {
       fontFamily: {
@@ -7,6 +7,7 @@ export default {
         space: ['Space Grotesk', 'sans-serif'],
         archivo: ['"Archivo Black"', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       animation: {
         'spin-slow': 'spin 8s linear infinite',
