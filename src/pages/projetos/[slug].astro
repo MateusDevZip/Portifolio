@@ -1,8 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
-import Footer from '../../components/sections/Footer.astro';
-import ProjectGallery from '../../components/ProjectGallery.astro';
+import { resolveAssetPath } from '../../utils/imagePaths';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -21,6 +20,10 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
 
 const baseUrl = import.meta.env.BASE_URL;
+
+// Resolve image paths
+const resolvedImages = project.data.images?.map(img => resolveAssetPath(img)) || [];
+const mainImage = resolvedImages[0] || '/og-image.png';
 ---
 
 <ProjectLayout title={`${project.data.title} — Mateus`} description={project.data.description}>
@@ -28,14 +31,15 @@ const baseUrl = import.meta.env.BASE_URL;
   <header class="fixed top-0 w-full z-50 bg-[#0b1326]/80 backdrop-blur-md shadow-[0_20px_50px_rgba(0,46,106,0.15)]">
     <div class="max-w-[1920px] mx-auto flex justify-between items-center px-8 h-20">
       <div class="text-xl font-black tracking-tighter text-slate-50 uppercase">
-        {project.data.title}
+        MONOLITH.DEV
       </div>
+      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8">
-        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Overview</a>
-        <a href="#" class="text-blue-500 font-medium">Stack</a>
-        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Features</a>
-        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Database</a>
-        <a href="#" class="text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300">Results</a>
+        <a href="#" class="nav-link text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300" data-tab="visao-geral">Overview</a>
+        <a href="#" class="nav-link text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300" data-tab="stack">Stack</a>
+        <a href="#" class="nav-link text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300" data-tab="funcionalidades">Features</a>
+        <a href="#" class="nav-link text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300" data-tab="banco-dados">Database</a>
+        <a href="#" class="nav-link text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300" data-tab="resultados">Results</a>
       </nav>
       <div class="flex items-center gap-4">
         <button class="active:scale-95 transition-transform duration-200">
@@ -63,7 +67,7 @@ const baseUrl = import.meta.env.BASE_URL;
           </h1>
         </div>
         <div class="flex flex-wrap gap-2">
-          {project.data.technologies && project.data.technologies.map((tech) => (
+          {project.data.technologies?.map((tech: string) => (
             <span class="px-4 py-1.5 rounded-full border border-outline-variant/30 text-xs font-mono bg-surface-container-low text-on-surface">
               {tech}
             </span>
@@ -75,53 +79,91 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- Project Media -->
     <section class="max-w-7xl mx-auto px-8 mb-24">
       <div class="aspect-video w-full rounded-xl overflow-hidden bg-surface-container-low relative group">
-        {project.data.images && project.data.images.length > 0 ? (
-          <ProjectGallery images={project.data.images} projectTitle={project.data.title} />
-        ) : (
-          <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-container to-surface-container-low">
-            <div class="text-center">
-              <span class="material-symbols-outlined text-6xl text-primary/50 mb-4 block">image</span>
-              <p class="text-slate-400 font-mono text-sm uppercase tracking-widest">No imagery</p>
+        <img
+          src={mainImage}
+          alt={project.data.title}
+          class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 md:grayscale-0 grayscale"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none"></div>
+
+        <!-- Thumbnails (se houver múltiplas imagens) -->
+        {resolvedImages.length > 1 && (
+          <div class="hidden md:block absolute bottom-4 left-1/2 -translate-x-1/2">
+            <div class="flex gap-3">
+              {resolvedImages.map((img: string, idx: number) => (
+                <button
+                  class={`gallery-thumb flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors cursor-pointer ${
+                    idx === 0 ? 'border-white/60' : 'border-white/20 hover:border-white/40'
+                  }`}
+                  data-index={idx}
+                  data-src={img}
+                  aria-label={`Imagem ${idx + 1}`}
+                >
+                  <img src={img} alt={`${project.data.title} ${idx + 1}`} class="w-full h-full object-cover" />
+                </button>
+              ))}
             </div>
           </div>
         )}
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0b1326] via-transparent to-transparent pointer-events-none"></div>
+
+        <!-- Image Counter -->
+        {resolvedImages.length > 1 && (
+          <div class="hidden md:block absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white/80 text-sm font-mono">
+            <span id="image-counter">1</span> / {resolvedImages.length}
+          </div>
+        )}
       </div>
     </section>
 
-    <!-- Tabs Navigation -->
-    <section class="max-w-7xl mx-auto px-8 mb-16">
+    <!-- Tabs Navigation (Desktop) -->
+    <section class="hidden md:block max-w-7xl mx-auto px-8 mb-16">
       <div class="flex flex-wrap gap-x-12 gap-y-6 border-b border-outline-variant/10">
-        <button data-tab="visao-geral" class="pb-4 text-blue-500 border-b-2 border-blue-500 font-bold text-lg tracking-tight uppercase cursor-pointer">Visão Geral</button>
-        <button data-tab="stack" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Stack Técnico</button>
-        <button data-tab="funcionalidades" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Funcionalidades</button>
-        <button data-tab="banco-dados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Banco de Dados</button>
-        <button data-tab="resultados" class="pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase cursor-pointer">Resultados</button>
+        <button class="tab-button pb-4 text-blue-500 border-b-2 border-blue-500 font-bold text-lg tracking-tight uppercase" data-tab="visao-geral">Visão Geral</button>
+        <button class="tab-button pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase" data-tab="stack">Stack Técnico</button>
+        <button class="tab-button pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase" data-tab="funcionalidades">Funcionalidades</button>
+        <button class="tab-button pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase" data-tab="banco-dados">Banco de Dados</button>
+        <button class="tab-button pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase" data-tab="resultados">Resultados</button>
       </div>
+    </section>
+
+    <!-- Tabs Navigation (Mobile) -->
+    <section class="block md:hidden max-w-lg mx-auto px-6">
+      <nav class="flex flex-col gap-2">
+        <button class="tab-button-mobile pb-4 text-blue-500 border-l-4 border-blue-500 bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-bold text-sm" data-tab="visao-geral">
+          <span>Overview</span>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+        <button class="tab-button-mobile pb-4 text-slate-400 bg-surface-container-lowest hover:bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-medium text-sm transition-all" data-tab="stack">
+          <span>Stack</span>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+        <button class="tab-button-mobile pb-4 text-slate-400 bg-surface-container-lowest hover:bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-medium text-sm transition-all" data-tab="funcionalidades">
+          <span>Features</span>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+        <button class="tab-button-mobile pb-4 text-slate-400 bg-surface-container-lowest hover:bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-medium text-sm transition-all" data-tab="banco-dados">
+          <span>Database</span>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+        <button class="tab-button-mobile pb-4 text-slate-400 bg-surface-container-lowest hover:bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-medium text-sm transition-all" data-tab="resultados">
+          <span>Results</span>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+        </button>
+      </nav>
     </section>
 
     <!-- Content Canvas (Asymmetric Layout) -->
-    <section class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-16">
+    <section class="max-w-7xl mx-auto px-8 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-16 mt-16">
+      <!-- Main Content (8 cols) -->
       <div class="md:col-span-8 space-y-12">
-        <!-- Tab Panels -->
-        <div id="panel-visao-geral" class="tab-panel space-y-8">
-          <!-- Visão Geral content will be inserted here -->
-        </div>
-        <div id="panel-stack" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-outline-variant/10">
-          <!-- Stack Técnico content will be inserted here -->
-        </div>
-        <div id="panel-funcionalidades" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
-          <!-- Funcionalidades content will be inserted here -->
-        </div>
-        <div id="panel-banco-dados" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
-          <!-- Banco de Dados content will be inserted here -->
-        </div>
-        <div id="panel-resultados" class="tab-panel hidden prose prose-invert prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400">
-          <!-- Resultados content will be inserted here -->
-        </div>
+        <div id="panel-visao-geral" class="tab-panel space-y-8"></div>
+        <div id="panel-stack" class="tab-panel hidden prose prose-invert max-w-none prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-strong:text-slate-50 prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-code:text-amber-300 prose-pre:bg-surface-container-lowest prose-pre:border prose-pre:border-outline-variant/10"></div>
+        <div id="panel-funcionalidades" class="tab-panel hidden prose prose-invert max-w-none prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-strong:text-slate-50 prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-code:text-amber-300 prose-pre:bg-surface-container-lowest prose-pre:border prose-pre:border-outline-variant/10"></div>
+        <div id="panel-banco-dados" class="tab-panel hidden prose prose-invert max-w-none prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-strong:text-slate-50 prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-code:text-amber-300 prose-pre:bg-surface-container-lowest prose-pre:border prose-pre:border-outline-variant/10"></div>
+        <div id="panel-resultados" class="tab-panel hidden prose prose-invert max-w-none prose-headings:font-bold prose-headings:text-slate-50 prose-p:text-slate-300 prose-strong:text-slate-50 prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-code:text-amber-300 prose-pre:bg-surface-container-lowest prose-pre:border prose-pre:border-outline-variant/10"></div>
       </div>
 
-      <!-- Sidebar -->
+      <!-- Sidebar (4 cols) -->
       <div class="md:col-span-4 space-y-8">
         {project.data.metrics && project.data.metrics.length > 0 ? (
           <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
@@ -130,36 +172,30 @@ const baseUrl = import.meta.env.BASE_URL;
               Impacto Imediato
             </h4>
             <ul class="space-y-6">
-              {project.data.metrics.map((metric) => (
-                <li class="flex flex-col">
-                  <span class={`text-4xl font-black ${
-                    metric.color === 'blue' ? 'text-blue-500' :
-                    metric.color === 'green' ? 'text-secondary' :
-                    'text-slate-50'
-                  }`}>
-                    {metric.value}
-                  </span>
-                  <span class="text-xs font-mono uppercase text-slate-500 tracking-tighter">
-                    {metric.label}
-                  </span>
-                </li>
-              ))}
+              {project.data.metrics.map((metric: any, idx: number) => {
+                let colorClass = 'text-slate-50';
+                if (metric.color === 'blue') colorClass = 'text-blue-500';
+                if (metric.color === 'green') colorClass = 'text-secondary';
+                return (
+                  <li class="flex flex-col">
+                    <span class={`text-4xl font-black ${colorClass}`}>{metric.value}</span>
+                    <span class="text-xs font-mono uppercase text-slate-500 tracking-tighter">{metric.label}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ) : (
           <div class="p-10 bg-surface-container-highest/30 rounded-2xl backdrop-blur-sm border border-outline-variant/10">
-            <h4 class="text-slate-50 font-bold mb-6 flex items-center gap-2">
-              <span class="material-symbols-outlined text-blue-500">info</span>
-              Sobre o Projeto
-            </h4>
-            <div class="space-y-4">
+            <h4 class="text-slate-50 font-bold mb-4">Sobre o Projeto</h4>
+            <div class="space-y-3 text-sm text-slate-300">
               <div>
-                <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Tipo</p>
-                <p class="text-slate-300">{project.data.category}</p>
+                <span class="text-xs font-mono text-slate-500 uppercase">Categoria</span>
+                <p class="text-slate-50">{project.data.category}</p>
               </div>
               <div>
-                <p class="text-xs font-mono uppercase text-slate-500 tracking-tighter mb-2">Ano</p>
-                <p class="text-slate-300">{project.data.year}</p>
+                <span class="text-xs font-mono text-slate-500 uppercase">Ano</span>
+                <p class="text-slate-50">{project.data.year}</p>
               </div>
             </div>
           </div>
@@ -170,278 +206,389 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- Features Grid (Bento Style) -->
     <section id="features-section" class="hidden max-w-7xl mx-auto px-8 mt-32">
       <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-slate-500 mb-12 text-center">Core Functionalities</h2>
-      <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Features will be extracted from funcionalidades panel -->
-      </div>
+      <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- Project Navigation -->
     <section class="max-w-7xl mx-auto px-8 mt-48 border-t border-outline-variant/20 pt-12">
       <div class="flex flex-col md:flex-row justify-between gap-12">
-        {prevProject && (
-          <a href={`${baseUrl}projetos/${prevProject.slug}`} class="group">
-            <span class="text-xs font-mono text-slate-500 uppercase tracking-widest block mb-4">Previous Project</span>
-            <div class="flex items-center gap-4">
-              <span class="material-symbols-outlined text-slate-500 group-hover:text-blue-500 group-hover:-translate-x-2 transition-all">arrow_back</span>
-              <span class="text-2xl font-bold text-slate-50 group-hover:text-blue-500 transition-colors">{prevProject.data.title}</span>
-            </div>
-          </a>
+        <a href={`${baseUrl}projetos/${prevProject.slug}/`} class="group">
+          <span class="text-xs font-mono text-slate-500 uppercase tracking-widest block mb-4">Previous Project</span>
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-slate-500 group-hover:text-blue-500 group-hover:-translate-x-2 transition-all">arrow_back</span>
+            <span class="text-2xl font-bold text-slate-50 group-hover:text-blue-500 transition-colors">{prevProject.data.title}</span>
+          </div>
+        </a>
+        <a href={`${baseUrl}projetos/${nextProject.slug}/`} class="group md:text-right">
+          <span class="text-xs font-mono text-slate-500 uppercase tracking-widest block mb-4">Next Project</span>
+          <div class="flex items-center justify-end gap-4">
+            <span class="text-2xl font-bold text-slate-50 group-hover:text-blue-500 transition-colors">{nextProject.data.title}</span>
+            <span class="material-symbols-outlined text-slate-500 group-hover:text-blue-500 group-hover:translate-x-2 transition-all">arrow_forward</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Mobile Action Buttons -->
+    <section class="block md:hidden max-w-lg mx-auto px-6 mt-12">
+      <div class="flex flex-col gap-4 py-6">
+        {project.data.link && (
+          <button class="w-full h-14 bg-primary text-on-primary font-bold rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+            <span class="material-symbols-outlined">launch</span>
+            View Live Demo
+          </button>
         )}
-        {nextProject && (
-          <a href={`${baseUrl}projetos/${nextProject.slug}`} class="group md:text-right">
-            <span class="text-xs font-mono text-slate-500 uppercase tracking-widest block mb-4">Next Project</span>
-            <div class="flex items-center justify-end gap-4">
-              <span class="text-2xl font-bold text-slate-50 group-hover:text-blue-500 transition-colors">{nextProject.data.title}</span>
-              <span class="material-symbols-outlined text-slate-500 group-hover:text-blue-500 group-hover:translate-x-2 transition-all">arrow_forward</span>
-            </div>
-          </a>
-        )}
+        <button class="w-full h-14 bg-surface-container-high text-slate-50 font-bold rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-all border border-outline-variant/20">
+          <span class="material-symbols-outlined">data_object</span>
+          Repository Details
+        </button>
       </div>
     </section>
   </main>
 
-  <Footer />
+  <!-- Footer -->
+  <footer class="bg-[#0b1326] w-full border-t border-slate-800/20">
+    <div class="max-w-7xl mx-auto px-12 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="text-slate-50 font-bold text-lg">DIGITAL MONOLITH</div>
+      <div class="flex flex-wrap justify-center gap-8">
+        <a href="#" class="font-mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-emerald-400 transition-all opacity-80 hover:opacity-100">GitHub</a>
+        <a href="#" class="font-mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-emerald-400 transition-all opacity-80 hover:opacity-100">LinkedIn</a>
+        <a href="#" class="font-mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-emerald-400 transition-all opacity-80 hover:opacity-100">Documentation</a>
+        <a href="#" class="font-mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-emerald-400 transition-all opacity-80 hover:opacity-100">Next Project</a>
+      </div>
+      <div class="font-mono text-[10px] uppercase tracking-widest text-slate-500">
+        © 2024 DIGITAL MONOLITH. ALL RIGHTS RESERVED.
+      </div>
+    </div>
+  </footer>
 
-  <!-- Hidden container for rendering markdown -->
+  <!-- Hidden Content Container -->
   <div id="content-container" class="hidden">
     <article class="prose prose-invert">
       <Content />
     </article>
   </div>
 
-  <script>
+  <script define:vars={{ baseUrl }}>
     document.addEventListener('DOMContentLoaded', () => {
-      const contentContainer = document.getElementById('content-container');
-
+      // ========== Distribuição do Markdown nos Tabs ==========
       const SECTION_MAP = {
         'visão geral': 'panel-visao-geral',
+        'overview': 'panel-visao-geral',
         'stack técnico': 'panel-stack',
+        'stack': 'panel-stack',
         'tecnologias utilizadas': 'panel-stack',
         'funcionalidades': 'panel-funcionalidades',
         'funcionalidades principais': 'panel-funcionalidades',
         'banco de dados': 'panel-banco-dados',
+        'database': 'panel-banco-dados',
         'resultados': 'panel-resultados',
         'resultados & impacto': 'panel-resultados',
         'impacto': 'panel-resultados',
+        'results': 'panel-resultados',
       };
 
-      if (contentContainer) {
-        const article = contentContainer.querySelector('article');
-        if (article) {
-          const h2Headings = Array.from(article.querySelectorAll('h2'));
-          const overflowContent = [];
+      const contentContainer = document.getElementById('content-container');
+      const h2s = contentContainer.querySelectorAll('h2');
+      const overflowContent = document.createDocumentFragment();
+      let lastMatchedPanel = null;
 
-          h2Headings.forEach((heading) => {
-            const content = [];
-            let currentNode = heading.nextElementSibling;
+      h2s.forEach((h2, idx) => {
+        const headingText = h2.textContent.toLowerCase().trim();
+        let targetPanelId = null;
 
-            while (currentNode && currentNode.tagName !== 'H2') {
-              content.push(currentNode.cloneNode(true));
-              currentNode = currentNode.nextElementSibling;
-            }
-
-            const headingText = heading.textContent.toLowerCase().trim();
-            let targetPanel = null;
-
-            for (const [key, panelId] of Object.entries(SECTION_MAP)) {
-              if (headingText.includes(key)) {
-                targetPanel = document.getElementById(panelId);
-                break;
-              }
-            }
-
-            if (targetPanel && content.length > 0) {
-              content.forEach(element => {
-                targetPanel.appendChild(element.cloneNode(true));
-              });
-            } else if (content.length > 0) {
-              overflowContent.push(...content);
-            }
-          });
-
-          if (overflowContent.length > 0) {
-            const visaoGeralPanel = document.getElementById('panel-visao-geral');
-            const separator = document.createElement('hr');
-            separator.className = 'my-8 border-outline-variant/20';
-            visaoGeralPanel.appendChild(separator);
-            overflowContent.forEach(element => {
-              visaoGeralPanel.appendChild(element.cloneNode(true));
-            });
+        for (const [key, panelId] of Object.entries(SECTION_MAP)) {
+          if (headingText.includes(key)) {
+            targetPanelId = panelId;
+            break;
           }
         }
+
+        const targetPanel = targetPanelId ? document.getElementById(targetPanelId) : null;
+
+        if (!targetPanel) {
+          overflowContent.appendChild(h2.cloneNode(true));
+
+          let sibling = h2.nextElementSibling;
+          while (sibling && sibling !== h2s[idx + 1]) {
+            overflowContent.appendChild(sibling.cloneNode(true));
+            sibling = sibling.nextElementSibling;
+          }
+        } else {
+          targetPanel.appendChild(h2.cloneNode(true));
+          lastMatchedPanel = targetPanel;
+
+          let sibling = h2.nextElementSibling;
+          while (sibling && sibling !== h2s[idx + 1]) {
+            targetPanel.appendChild(sibling.cloneNode(true));
+            sibling = sibling.nextElementSibling;
+          }
+        }
+      });
+
+      const panelVisaoGeral = document.getElementById('panel-visao-geral');
+      if (overflowContent.childNodes.length > 0 && panelVisaoGeral) {
+        const hr = document.createElement('hr');
+        hr.className = 'border-t border-outline-variant/20 my-8';
+        panelVisaoGeral.appendChild(hr);
+        panelVisaoGeral.appendChild(overflowContent);
       }
 
-      // Format visao-geral panel with special styling
-      const visaoGeralPanel = document.getElementById('panel-visao-geral');
-      if (visaoGeralPanel && visaoGeralPanel.children.length > 0) {
-        const h2 = visaoGeralPanel.querySelector('h2');
+      // ========== Estilização Especial do Visão Geral ==========
+      if (panelVisaoGeral) {
+        const h2 = panelVisaoGeral.querySelector('h2');
+        const p = panelVisaoGeral.querySelector('p');
+
         if (h2) {
-          h2.className = 'text-3xl font-bold text-slate-50 tracking-tight mb-6';
+          h2.className = 'text-3xl font-bold text-slate-50 mb-6 tracking-tight';
         }
-        const p = visaoGeralPanel.querySelector('p');
         if (p) {
           p.className = 'text-xl text-slate-400 leading-relaxed font-light mb-8';
         }
-        // Convert h3 + p pairs to colored cards
-        const h3s = Array.from(visaoGeralPanel.querySelectorAll('h3'));
-        if (h3s.length > 0) {
-          const cardsContainer = document.createElement('div');
-          cardsContainer.className = 'grid grid-cols-1 sm:grid-cols-2 gap-8';
 
-          h3s.forEach((h3, idx) => {
-            const p = h3.nextElementSibling;
-            if (p && p.tagName === 'P') {
-              const card = document.createElement('div');
-              const borderColor = idx === 0 ? 'border-blue-500' : 'border-secondary';
-              const textColor = idx === 0 ? 'text-blue-500' : 'text-secondary';
+        const h3s = panelVisaoGeral.querySelectorAll('h3');
+        const h3Array = Array.from(h3s);
 
-              card.className = `p-8 rounded-xl bg-surface-container-low border-l-4 ${borderColor}`;
-              card.innerHTML = `
-                <h3 class="font-mono text-xs ${textColor} mb-2 uppercase tracking-widest">${h3.textContent}</h3>
-                <p class="text-slate-300">${p.textContent}</p>
-              `;
-              cardsContainer.appendChild(card);
-              h3.style.display = 'none';
-              p.style.display = 'none';
-            }
-          });
+        if (h3Array.length > 0) {
+          const gridContainer = document.createElement('div');
+          gridContainer.className = 'grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8';
 
-          if (cardsContainer.children.length > 0) {
-            visaoGeralPanel.appendChild(cardsContainer);
-          }
-        }
-      }
-
-      // Hide empty tabs
-      ['stack', 'banco-dados', 'funcionalidades', 'resultados'].forEach(id => {
-        const panel = document.getElementById(`panel-${id}`);
-        const btn = document.querySelector(`[data-tab="${id}"]`);
-
-        if (panel && btn && panel.children.length === 0) {
-          btn.style.display = 'none';
-        }
-      });
-
-      // Build bento grid from funcionalidades
-      const funcPanel = document.getElementById('panel-funcionalidades');
-      if (funcPanel && funcPanel.children.length > 0) {
-        document.getElementById('features-section').classList.remove('hidden');
-
-        const h3s = Array.from(funcPanel.querySelectorAll('h3'));
-        const grid = document.getElementById('features-grid');
-
-        const iconMap = {
-          'email': 'mail', 'e-mail': 'mail', 'integração': 'mail',
-          'pipeline': 'account_tree', 'vendas': 'account_tree',
-          'permiss': 'security', 'permissões': 'security',
-          'arquitetura': 'database', 'dados': 'database'
-        };
-
-        h3s.forEach((h3, idx) => {
-          const p = h3.nextElementSibling;
-          if (p && (p.tagName === 'P' || p.tagName === 'DIV')) {
-            const title = h3.textContent;
-            let icon = 'widgets';
-            for (const [key, val] of Object.entries(iconMap)) {
-              if (title.toLowerCase().includes(key)) {
-                icon = val;
-                break;
-              }
-            }
-
-            const span = idx % 3 === 0 && idx < h3s.length - 1 ? 2 : 1;
-            const cardColor = idx === 0 ? 'text-blue-500' : idx === 1 ? 'text-secondary' : idx === 2 ? 'text-tertiary' : 'text-primary';
+          h3Array.forEach((h3, idx) => {
+            const nextSibling = h3.nextElementSibling;
+            const p = nextSibling && nextSibling.tagName === 'P' ? nextSibling : null;
 
             const card = document.createElement('div');
-            card.className = `md:col-span-${span} bg-surface-container-low p-10 rounded-2xl group hover:bg-surface-container-high transition-all duration-300`;
+            const borderColor = idx === 0 ? 'border-blue-500' : 'border-secondary';
+            const textColor = idx === 0 ? 'text-blue-500' : 'text-secondary';
+            card.className = `p-8 rounded-xl bg-surface-container-low border-l-4 ${borderColor}`;
             card.innerHTML = `
-              <span class="material-symbols-outlined text-4xl ${cardColor} mb-6 group-hover:scale-110 transition-transform">${icon}</span>
-              <h3 class="text-2xl font-bold text-slate-50 mb-4">${title}</h3>
-              <p class="text-slate-400">${p.textContent}</p>
+              <h3 class="font-mono text-xs ${textColor} mb-2 uppercase tracking-widest">${h3.textContent}</h3>
+              <p class="text-slate-300">${p ? p.textContent : ''}</p>
             `;
-            grid.appendChild(card);
+
+            gridContainer.appendChild(card);
+
+            h3.style.display = 'none';
+            if (p) p.style.display = 'none';
+          });
+
+          panelVisaoGeral.appendChild(gridContainer);
+        }
+      }
+
+      // ========== Ocultação de Tabs Vazias ==========
+      const emptyPanels = ['stack', 'banco-dados', 'funcionalidades', 'resultados'];
+      emptyPanels.forEach(panelName => {
+        const panel = document.getElementById(`panel-${panelName}`);
+        if (panel && panel.children.length === 0) {
+          const buttons = document.querySelectorAll(
+            `.tab-button[data-tab="${panelName}"], .tab-button-mobile[data-tab="${panelName}"], .nav-link[data-tab="${panelName}"]`
+          );
+          buttons.forEach(btn => (btn.style.display = 'none'));
+        }
+      });
+
+      // ========== Bento Grid de Funcionalidades ==========
+      const panelFuncionalidades = document.getElementById('panel-funcionalidades');
+      if (panelFuncionalidades && panelFuncionalidades.children.length > 0) {
+        document.getElementById('features-section').classList.remove('hidden');
+
+        const h3s = panelFuncionalidades.querySelectorAll('h3');
+        const featuresGrid = document.getElementById('features-grid');
+
+        const iconMap = {
+          email: 'mail', integração: 'mail', e_mail: 'mail',
+          pipeline: 'account_tree', vendas: 'account_tree',
+          permissão: 'security', granular: 'security', rbac: 'security',
+          arquitetura: 'database', dados: 'database', schema: 'database',
+          analytics: 'analytics', dashboard: 'analytics', 'real-time': 'analytics',
+        };
+
+        const colorCycle = ['text-blue-500', 'text-secondary', 'text-tertiary', 'text-primary'];
+
+        h3s.forEach((h3, idx) => {
+          const title = h3.textContent.trim();
+          const nextSibling = h3.nextElementSibling;
+          const description = nextSibling && nextSibling.tagName === 'P' ? nextSibling.textContent : '';
+
+          let icon = 'widgets';
+          for (const [key, iconName] of Object.entries(iconMap)) {
+            if (title.toLowerCase().includes(key)) {
+              icon = iconName;
+              break;
+            }
+          }
+
+          const isWideCard = idx % 3 === 0 && idx < h3s.length - 1;
+          const colSpan = isWideCard ? 'md:col-span-2' : 'md:col-span-1';
+          const color = colorCycle[idx % colorCycle.length];
+
+          const card = document.createElement('div');
+          card.className = `${colSpan} bg-surface-container-low p-10 rounded-2xl flex flex-col justify-between group hover:bg-surface-container-high transition-all duration-300`;
+          card.innerHTML = `
+            <div>
+              <span class="material-symbols-outlined text-4xl ${color} mb-6 group-hover:scale-110 transition-transform">${icon}</span>
+              <h3 class="text-2xl font-bold text-slate-50 mb-4">${title}</h3>
+              <p class="text-slate-400 max-w-md">${description}</p>
+            </div>
+          `;
+
+          featuresGrid.appendChild(card);
+        });
+      }
+
+      // ========== Sistema de Tabs ==========
+      function switchTab(tabName) {
+        // Ocultar todos os paineis
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+          panel.classList.add('hidden');
+        });
+
+        // Mostrar painel selecionado
+        const targetPanel = document.getElementById(`panel-${tabName}`);
+        if (targetPanel) {
+          targetPanel.classList.remove('hidden');
+        }
+
+        // Atualizar estilos dos botões desktop
+        document.querySelectorAll('.tab-button').forEach(btn => {
+          if (btn.dataset.tab === tabName) {
+            btn.className = 'tab-button pb-4 text-blue-500 border-b-2 border-blue-500 font-bold text-lg tracking-tight uppercase';
+          } else {
+            btn.className = 'tab-button pb-4 text-slate-500 hover:text-slate-300 transition-colors font-bold text-lg tracking-tight uppercase';
+          }
+        });
+
+        // Atualizar estilos dos botões mobile
+        document.querySelectorAll('.tab-button-mobile').forEach(btn => {
+          if (btn.dataset.tab === tabName) {
+            btn.className = 'tab-button-mobile pb-4 text-blue-500 border-l-4 border-blue-500 bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-bold text-sm';
+          } else {
+            btn.className = 'tab-button-mobile pb-4 text-slate-400 bg-surface-container-lowest hover:bg-surface-container-low flex items-center justify-between w-full p-4 rounded-xl font-medium text-sm transition-all';
+          }
+        });
+
+        // Atualizar nav links desktop
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.preventDefault = true;
+          if (link.dataset.tab === tabName) {
+            link.className = 'nav-link text-blue-500 font-medium transition-colors duration-300 border-b-2 border-blue-500';
+          } else {
+            link.className = 'nav-link text-slate-400 font-medium hover:text-blue-400 transition-colors duration-300';
           }
         });
       }
 
-      // Tab functionality
-      const allTabButtons = document.querySelectorAll('[data-tab]');
-
-      allTabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const targetTab = button.getAttribute('data-tab');
-
-          document.querySelectorAll('.tab-panel').forEach(p => {
-            p.classList.add('hidden');
-          });
-
-          document.querySelectorAll('[data-tab]').forEach(b => {
-            b.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
-            b.classList.add('text-slate-500', 'hover:text-slate-300');
-          });
-
-          const selectedPanel = document.getElementById(`panel-${targetTab}`);
-          if (selectedPanel) {
-            selectedPanel.classList.remove('hidden');
-          }
-
-          button.classList.remove('text-slate-500', 'hover:text-slate-300');
-          button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+      // Event listeners para todos os botões de tab
+      document.querySelectorAll('[data-tab]').forEach(element => {
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tabName = element.dataset.tab;
+          switchTab(tabName);
         });
       });
 
-      // Lenis smooth scroll
+      // ========== Lenis Smooth Scroll ==========
       if (typeof Lenis !== 'undefined') {
         const lenis = new Lenis({
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          direction: 'vertical',
-          smooth: true,
         });
 
         function raf(time) {
           lenis.raf(time);
           requestAnimationFrame(raf);
         }
+
         requestAnimationFrame(raf);
       }
 
-      // Custom cursor
-      const customCursor = document.querySelector('.custom-cursor');
+      // ========== Custom Cursor ==========
+      const cursor = document.querySelector('.custom-cursor');
       const cursorFollower = document.querySelector('.cursor-follower');
 
-      if (customCursor && cursorFollower) {
-        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+      if (cursor && cursorFollower) {
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
           mouseX = e.clientX;
           mouseY = e.clientY;
-          customCursor.style.left = mouseX + 'px';
-          customCursor.style.top = mouseY + 'px';
-          customCursor.classList.add('visible');
+
+          cursor.style.left = mouseX + 'px';
+          cursor.style.top = mouseY + 'px';
+
+          cursor.classList.add('visible');
           cursorFollower.classList.add('visible');
         });
 
         function animateFollower() {
           followerX += (mouseX - followerX) * 0.2;
           followerY += (mouseY - followerY) * 0.2;
+
           cursorFollower.style.left = followerX + 'px';
           cursorFollower.style.top = followerY + 'px';
+
           requestAnimationFrame(animateFollower);
         }
 
         animateFollower();
 
         document.addEventListener('mouseleave', () => {
-          customCursor.classList.remove('visible');
+          cursor.classList.remove('visible');
           cursorFollower.classList.remove('visible');
         });
 
         document.addEventListener('touchstart', () => {
-          customCursor.classList.remove('visible');
+          cursor.classList.remove('visible');
           cursorFollower.classList.remove('visible');
         });
       }
+
+      // ========== Gallery Thumbnails ==========
+      document.querySelectorAll('.gallery-thumb').forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          const mainImage = document.querySelector('section:nth-of-type(2) img');
+          const counter = document.getElementById('image-counter');
+          const src = thumb.getAttribute('data-src');
+          const index = parseInt(thumb.getAttribute('data-index'), 10);
+
+          if (mainImage && src) {
+            mainImage.src = src;
+
+            if (counter) {
+              counter.textContent = String(index + 1);
+            }
+
+            document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+              if (i === index) {
+                t.classList.remove('border-white/20', 'hover:border-white/40');
+                t.classList.add('border-white/60');
+              } else {
+                t.classList.remove('border-white/60');
+                t.classList.add('border-white/20', 'hover:border-white/40');
+              }
+            });
+          }
+        });
+      });
+
+      // Keyboard navigation para gallery
+      document.addEventListener('keydown', (e) => {
+        const mainImage = document.querySelector('section:nth-of-type(2) img');
+        if (!mainImage) return;
+
+        const thumbs = document.querySelectorAll('.gallery-thumb');
+        const current = Array.from(thumbs).findIndex(t =>
+          t.getAttribute('data-src') === mainImage.src
+        );
+
+        if (e.key === 'ArrowRight' && current < thumbs.length - 1) {
+          thumbs[current + 1].click();
+        } else if (e.key === 'ArrowLeft' && current > 0) {
+          thumbs[current - 1].click();
+        }
+      });
     });
   </script>
 </ProjectLayout>
