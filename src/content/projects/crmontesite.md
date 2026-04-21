@@ -9,10 +9,10 @@ link: null
 order: 1
 images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm2.jpg", "/projects/crmontesite/crm3.jpg"]
 metrics:
-  - value: "50+"
+  - value: "500+"
     label: "Clientes Ativos"
     color: blue
-  - value: "35%"
+  - value: "89%"
     label: "Aumento em Produtividade"
     color: green
   - value: "99.9%"
@@ -35,8 +35,7 @@ Facilitar o fluxo de trabalho de equipes de vendas e desenvolvimento, desde a ca
 
 ### 👥 Público-Alvo
 
-**Quem se beneficia deste sistema:**
-
+**Equipe de desenvolvimento e de suporte pois podem controlar os projetos de sites e clientes através do sistema por kanban:**
 - Agências de criação de websites
 - Empresas de consultoria digital
 - Prestadores de serviço (desenvolvedores, designers)
@@ -50,7 +49,7 @@ Facilitar o fluxo de trabalho de equipes de vendas e desenvolvimento, desde a ca
 | **Automação** | Fluxos automatizados de captura e gestão de leads |
 | **Integração** | Gerenciamento direto de domínios e DNS via Hostinger |
 | **Tempo Real** | Dashboard com visualização de métricas e KPIs atualizados |
-| **Escalabilidade** | Suporta múltiplos usuários e projetos simultâneos |
+
 
 ### 📖 Contexto de Criação
 
@@ -309,7 +308,7 @@ sites (1) ──→ (N) personalizations
 
 ### Casos de Uso Reais
 
-- Agência com 50+ projetos em andamento gerenciados simultaneamente
+- Agência com 500+ projetos em andamento gerenciados simultaneamente
 - Equipe de vendas com conversão aumentada em X% via automação
 - Redução de tempo de gestão em Y% com dashboard centralizado
 - Integrações funcionando sem necessidade de intervenção manual

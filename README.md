@@ -1,4 +1,4 @@
-# Portfólio - Mateus Pinto
+# Portfólio - MATEUS S P.
 
 > Full-Stack Developer | React | Next.js | Node.js | Python | Martech
 
@@ -67,4 +67,4 @@ Este projeto é de uso pessoal. Sinta-se livre para explorar e aprender com o c�
 
 ---
 
-**Desenvolvido por [Mateus Pinto](https://www.linkedin.com/in/mateusdsp/)**
+**Desenvolvido por [MATEUS S P.](https://www.linkedin.com/in/mateusdsp/)**

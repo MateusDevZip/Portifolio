@@ -26,11 +26,11 @@ const resolvedImages = project.data.images?.map(img => resolveAssetPath(img)) ||
 const mainImage = resolvedImages[0] || '/og-image.png';
 ---
 
-<ProjectLayout title={`${project.data.title} — Mateus`} description={project.data.description}>
+<ProjectLayout title={`${project.data.title} — MATEUS S P.`} description={project.data.description}>
   <!-- TopAppBar -->
   <nav id="project-nav" class="px-[30px] md:px-[60px] py-[30px] flex items-center justify-between fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
     <a href={baseUrl || '/'} class="text-[28px] md:text-[40px] font-light text-white tracking-widest uppercase items-center flex gap-1 hover:opacity-80 transition-opacity">
-      Mateus<span class="w-2 h-2 rounded-full bg-white mt-4"></span>
+      MATEUS S P.<span class="w-2 h-2 rounded-full bg-white mt-4"></span>
     </a>
     <div class="flex items-center gap-6">
       <a href={`${baseUrl}#projects`} class="hidden md:block text-sm font-space uppercase tracking-wider text-white/70 hover:text-white transition-colors">
@@ -241,7 +241,7 @@ const mainImage = resolvedImages[0] || '/og-image.png';
     <!-- Features Grid (Bento Style) -->
     <section id="features-section" class="hidden max-w-7xl mx-auto px-8 mt-32">
       <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-slate-500 mb-12 text-center">Core Functionalities</h2>
-      <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+      <div id="features-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 grid-flow-dense"></div>
     </section>
 
     <!-- Project Navigation -->
@@ -273,10 +273,6 @@ const mainImage = resolvedImages[0] || '/og-image.png';
             View Live Demo
           </button>
         )}
-        <button class="w-full h-14 bg-surface-container-high text-slate-50 font-bold rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-all border border-outline-variant/20">
-          <span class="material-symbols-outlined">data_object</span>
-          Repository Details
-        </button>
       </div>
     </section>
   </main>
@@ -400,22 +396,38 @@ const mainImage = resolvedImages[0] || '/og-image.png';
           gridContainer.className = 'grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8';
 
           h3Array.forEach((h3, idx) => {
-            const nextSibling = h3.nextElementSibling;
-            const p = nextSibling && nextSibling.tagName === 'P' ? nextSibling : null;
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'text-slate-300 text-sm space-y-2';
+            
+            let sibling = h3.nextElementSibling;
+            while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+              const clone = sibling.cloneNode(true);
+              // Ajustar estilos de listas e tabelas para dentro do card
+              if (clone.tagName === 'TABLE') {
+                clone.className = 'w-full text-xs border-collapse mt-2';
+                clone.querySelectorAll('td, th').forEach(cell => {
+                  cell.className = 'border border-slate-700 p-1';
+                });
+              }
+              contentWrapper.appendChild(clone);
+              sibling.style.display = 'none'; // Esconder original
+              sibling = sibling.nextElementSibling;
+            }
 
             const card = document.createElement('div');
             const borderColor = idx === 0 ? 'border-blue-500' : 'border-secondary';
             const textColor = idx === 0 ? 'text-blue-500' : 'text-secondary';
-            card.className = `p-8 rounded-xl bg-surface-container-low border-l-4 ${borderColor}`;
-            card.innerHTML = `
-              <h3 class="font-mono text-xs ${textColor} mb-2 uppercase tracking-widest">${h3.textContent}</h3>
-              <p class="text-slate-300">${p ? p.textContent : ''}</p>
-            `;
+            card.className = `p-8 rounded-xl bg-surface-container-low border-l-4 ${borderColor} h-full`;
+            
+            const title = document.createElement('h3');
+            title.className = `font-mono text-xs ${textColor} mb-4 uppercase tracking-widest`;
+            title.textContent = h3.textContent;
+            
+            card.appendChild(title);
+            card.appendChild(contentWrapper);
 
             gridContainer.appendChild(card);
-
             h3.style.display = 'none';
-            if (p) p.style.display = 'none';
           });
 
           panelVisaoGeral.appendChild(gridContainer);
@@ -465,7 +477,7 @@ const mainImage = resolvedImages[0] || '/og-image.png';
             }
           }
 
-          const isWideCard = idx % 3 === 0 && idx < h3s.length - 1;
+          const isWideCard = idx % 2 === 0;
           const colSpan = isWideCard ? 'md:col-span-2' : 'md:col-span-1';
           const color = colorCycle[idx % colorCycle.length];
 
