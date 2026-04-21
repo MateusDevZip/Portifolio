@@ -1,4 +1,6 @@
 <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <title>MSP Portfolio Favicon</title>
+  <desc>White MSP monospaced initials on black background</desc>
   <rect width="192" height="192" fill="#000000"/>
   <text x="96" y="130" font-family="Courier New, monospace" font-size="100" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">MSP</text>
 </svg>
