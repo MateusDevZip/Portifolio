@@ -10,7 +10,9 @@ const projects = defineCollection({
     technologies: z.array(z.string()).optional(),
     link: z.string().url().optional().nullable(),
     images: z.array(z.string()).optional(),
-    order: z.number().optional(),
+    order: z.number(),
+    // Areas-alvo do Mateus: desenvolvimento (front/back), IA aplicada e dados
+    areas: z.array(z.enum(['dev', 'ia', 'dados'])).min(1),
     metrics: z.array(z.object({
       value: z.string(),
       label: z.string(),

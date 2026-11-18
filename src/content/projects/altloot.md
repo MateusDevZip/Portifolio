@@ -6,8 +6,9 @@ description: RPG Idle/Clicker com estética Office-Stealth
 color: "#291F3E"
 technologies: ["Vite", "React", "Tailwind CSS", "Framer Motion", "Supabase", "PostgreSQL"]
 link: null
-order: 5
+order: 7
 images: ["/projects/altloot/capa_altloot.png", "/projects/altloot/altloot1.jpg", "/projects/altloot/altloot2.jpg", "/projects/altloot/altloot3.jpg"]
+areas: [dev]
 ---
 ## Visão Geral
 

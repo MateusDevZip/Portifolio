@@ -6,8 +6,9 @@ description: Plataforma LMS completa para criar e gerenciar treinamentos corpora
 color: "#EF4444"
 technologies: ["Vite", "TypeScript", "React", "shadcn-ui", "Tailwind CSS", "Supabase", "PostgreSQL"]
 link: "https://expert.egestor.com.br/"
-order: 3
+order: 4
 images: ["/projects/expert-egestor/expert1.jpg", "/projects/expert-egestor/expert2.jpg", "/projects/expert-egestor/expert3.jpg", "/projects/expert-egestor/expert4.jpg"]
+areas: [dev]
 ---
 
 ## Visão Geral

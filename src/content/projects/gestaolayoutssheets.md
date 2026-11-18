@@ -6,8 +6,9 @@ description: Sistema automatizado para gestão de layouts com integração nativ
 color: "#22c55e"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui", "Vite", "Google Sheets API"]
 link: null
-order: 2
+order: 3
 images: ["/projects/gestaolayoutssheets/layout1.jpg", "/projects/gestaolayoutssheets/layout2.jpg"]
+areas: [dev, dados]
 ---
 
 ## Visão Geral

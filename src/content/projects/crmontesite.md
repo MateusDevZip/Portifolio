@@ -6,7 +6,7 @@ description: Sistema completo de CRM para gestão de projetos, leads e vendas. I
 color: "#3b82f6"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
 link: null
-order: 1
+order: 2
 images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm2.jpg", "/projects/crmontesite/crm3.jpg"]
 metrics:
   - value: "500+"
@@ -18,6 +18,7 @@ metrics:
   - value: "99.9%"
     label: "Uptime de Sincronização"
     color: white
+areas: [dev]
 ---
 
 ## Visão Geral

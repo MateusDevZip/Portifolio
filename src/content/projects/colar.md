@@ -6,7 +6,7 @@ description: Aplicação web colaborativa para gerenciar finanças, tarefas e in
 color: "#f6d43b"
 technologies: ["Python", "Flask", "JavaScript", "Tailwind CSS", "Jinja2", "Supabase", "Chart.js", "HTML5"]
 link: null
-order: 4
+order: 5
 images: ["/projects/colar/colar1-login.png", "/projects/colar/colar2-dashboard.png", "/projects/colar/colar3-finances.png", "/projects/colar/colar4-tasks.png", "/projects/colar/colar5-members.png", "/projects/colar/colar6-transaction.png"]
 metrics:
   - value: "Em Desenvolvimento"
@@ -18,6 +18,7 @@ metrics:
   - value: "100%"
     label: "Dark Mode Premium"
     color: white
+areas: [dev]
 ---
 
 ## Visão Geral

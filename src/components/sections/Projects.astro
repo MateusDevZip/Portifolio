@@ -2,7 +2,10 @@
 import { getCollection } from 'astro:content';
 import { resolveAssetPath } from '../../utils/imagePaths';
 const projects = await getCollection('projects');
-const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
+// Ordem de relevancia para as vagas-alvo (dev, IA, dados), nao por ano
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+const NOMES_AREA = { dev: 'Desenvolvimento', ia: 'IA', dados: 'Dados' };
+const FILTROS = [['todos', 'Todos'], ['dev', 'Desenvolvimento'], ['ia', 'IA'], ['dados', 'Dados']];
 ---
 
 <section id="projects" class="projects-split px-[30px] lg:px-[60px] py-[100px] lg:py-[150px] relative z-10" aria-label="Projetos selecionados">
@@ -14,20 +17,32 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
         <span id="project-counter" class="project-counter">01</span>
         <span class="text-white/20 font-space text-sm tracking-widest">/ {sortedProjects.length.toString().padStart(2, '0')}</span>
       </div>
-      <div class="split-title flex items-center gap-3 mb-12">
+      <div class="split-title flex items-center gap-3 mb-6">
         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
         <h2 class="uppercase text-white font-space tracking-widest text-[14px]">Trabalhos Selecionados</h2>
       </div>
 
+      <div class="flex flex-wrap gap-2 mb-10" id="filtro-areas" role="group" aria-label="Filtrar projetos por área">
+        {FILTROS.map(([valor, rotulo], i) => (
+          <button type="button" data-filtro={valor} aria-pressed={i === 0 ? 'true' : 'false'}
+            class="filtro-area px-4 py-2 rounded-full border border-white/20 text-white/70 font-space text-xs uppercase tracking-widest hover:border-white/60 transition-colors">
+            {rotulo}
+          </button>
+        ))}
+      </div>
+
       <div class="space-y-4" id="project-links">
         {sortedProjects.map((project, idx) => (
-          <a href={`${import.meta.env.BASE_URL}projetos/${project.slug}`} class="split-project-item flex justify-between items-center py-4 pl-6 cursor-pointer group" class:list={{ active: idx === 0 }}>
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-2">
+          <a href={`${import.meta.env.BASE_URL}projetos/${project.slug}`} data-areas={project.data.areas.join(' ')} class="split-project-item flex justify-between items-center py-4 pl-6 cursor-pointer group" class:list={{ active: idx === 0 }}>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
                 <span class="text-white/40 text-xs font-space tracking-wider block">{project.data.year}</span>
                 <div class={`w-2 h-2 rounded-full animate-pulse`} style={{ backgroundColor: project.data.color }}></div>
+                {project.data.areas.map((area) => (
+                  <span class="text-[10px] font-space uppercase tracking-widest text-white/50 border border-white/15 rounded-full px-2 py-0.5">{NOMES_AREA[area]}</span>
+                ))}
               </div>
-              <h3 class="text-[32px] md:text-[40px] font-bold text-white mb-1 uppercase group-hover:translate-x-2 transition-transform">{project.data.title}</h3>
+              <h3 class="text-[28px] md:text-[40px] font-bold text-white mb-1 uppercase group-hover:translate-x-2 transition-transform break-words">{project.data.title}</h3>
               <p class="text-white/50 text-sm font-space">{project.data.category}</p>
             </div>
           </a>
@@ -38,7 +53,7 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
     <!-- Right: Previews -->
     <div class="split-preview space-y-16 lg:space-y-32" id="project-previews">
       {sortedProjects.map((project, idx) => (
-        <div class={`project-preview-item project-card h-[60vh] lg:h-[75vh] w-full rounded-3xl bg-neutral-900 relative p-8 flex items-end overflow-hidden group`} class:list={{ active: idx === 0 }}>
+        <div data-areas={project.data.areas.join(' ')} class={`project-preview-item project-card h-[60vh] lg:h-[75vh] w-full rounded-3xl bg-neutral-900 relative p-8 flex items-end overflow-hidden group`} class:list={{ active: idx === 0 }}>
           <div class="project-image absolute inset-0">
             {project.data.images && project.data.images[0] && (
               <img 
@@ -63,6 +78,25 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
     </div>
   </div>
 </section>
+
+<script>
+  // Filtro por area (sem JavaScript, todos os projetos aparecem)
+  const botoesFiltro = document.querySelectorAll('#filtro-areas .filtro-area');
+  const itensComArea = document.querySelectorAll('#project-links [data-areas], #project-previews [data-areas]');
+  const totalVisivel = document.querySelector('#projects .text-white\\/20');
+  botoesFiltro.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      const filtro = botao.dataset.filtro;
+      botoesFiltro.forEach((b) => b.setAttribute('aria-pressed', b === botao ? 'true' : 'false'));
+      itensComArea.forEach((item) => {
+        const mostra = filtro === 'todos' || item.dataset.areas.split(' ').includes(filtro);
+        item.classList.toggle('hidden', !mostra);
+      });
+      const visiveis = document.querySelectorAll('#project-links [data-areas]:not(.hidden)').length;
+      if (totalVisivel) totalVisivel.textContent = `/ ${String(visiveis).padStart(2, '0')}`;
+    });
+  });
+</script>
 
 <script>
   // Projects scroll spy animation
@@ -117,5 +151,11 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
 
   .project-card.active {
     transform: scale(1);
+  }
+
+  .filtro-area[aria-pressed='true'] {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
   }
 </style>
