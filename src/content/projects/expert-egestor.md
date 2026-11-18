@@ -58,12 +58,6 @@ Simplificar o processo de treinamento corporativo, permitindo que gestores criem
 - Responsive design (mobile, tablet, desktop)
 - Performance otimizada
 
-### Backend
-
-**Runtime & Framework:**
-- **Node.js** — Ambiente de execução JavaScript
-- **API RESTful** — Comunicação cliente-servidor
-
 ### Banco de Dados & Autenticação
 
 **Backend as a Service (BaaS):**
@@ -164,7 +158,7 @@ Administrador        Funcionário/Cliente
     ↓                        ↓
     └────→ React Frontend ←──┘
               ↓
-         API RESTful
+      API do Supabase
               ↓
           Supabase
     (PostgreSQL + Auth + RLS)
