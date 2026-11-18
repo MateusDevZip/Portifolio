@@ -5,25 +5,22 @@ category: Sistema Web / Gestão Doméstica
 description: Aplicação web colaborativa para gerenciar finanças, tarefas e inventário de forma compartilhada entre casais, colegas de quarto e amigos que dividem moradia.
 color: "#f6d43b"
 technologies: ["Python", "Flask", "JavaScript", "Tailwind CSS", "Jinja2", "Supabase", "Chart.js", "HTML5"]
-link: null
+link: "https://colarapp.vercel.app"
 order: 5
 images: ["/projects/colar/colar1-login.png", "/projects/colar/colar2-dashboard.png", "/projects/colar/colar3-finances.png", "/projects/colar/colar4-tasks.png", "/projects/colar/colar5-members.png", "/projects/colar/colar6-transaction.png"]
 metrics:
-  - value: "Em Desenvolvimento"
-    label: "Status do Projeto"
+  - value: "Beta"
+    label: "Já dá para usar, na Vercel"
     color: blue
   - value: "4"
-    label: "Módulos Principais"
+    label: "Módulos principais"
     color: green
-  - value: "100%"
-    label: "Dark Mode Premium"
-    color: white
 areas: [dev]
 ---
 
 ## Visão Geral
 
-O **Colar** é uma aplicação web moderna desenvolvida com Flask e Supabase para ajudar famílias, casais e grupos de amigos a organizarem suas finanças, tarefas e inventário de forma colaborativa e transparente. Com uma interface elegante em dark mode e design totalmente responsivo, o Colar oferece uma experiência intuitiva e premium.
+O **Colar** é uma aplicação web moderna desenvolvida com Flask e Supabase para ajudar famílias, casais e grupos de amigos a organizarem suas finanças, tarefas e inventário de forma colaborativa e transparente. Com uma interface escura e responsiva, o Colar já pode ser usado em versão beta em [colarapp.vercel.app](https://colarapp.vercel.app). Ainda não tem domínio próprio nem monetização.
 
 ### 🎯 Propósito
 
@@ -72,7 +69,7 @@ Facilitar a organização e divisão de despesas domésticas entre pessoas que c
 
 **Estilo & Design:**
 - **Tailwind CSS (CDN)** — Framework CSS utilitário com suporte nativo a dark mode
-- **Tailwind Dark Mode** — Interface escura premium com gradientes personalizados
+- **Tailwind Dark Mode** — Interface escura com gradientes personalizados
 
 **Visualização de Dados:**
 - **Chart.js** — Gráficos interativos (linha, rosca, barra)
@@ -178,7 +175,7 @@ Cada grupo é isolado e apenas seus membros têm acesso aos dados.
 
 ### Design System
 
-- **Tema:** Dark Mode premium com gradientes personalizados
+- **Tema:** modo escuro com gradientes personalizados
 - **Cores Principais:** Azul, verde, amarelo, com acentos dourados
 - **Tipografia:** Outfit para títulos, Inter para corpo
 - **Ícones:** Font Awesome + Material Icons para consistência

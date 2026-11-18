@@ -5,8 +5,8 @@ category: E-commerce / Lead Generation / Automação
 description: Plataforma de venda de certificados digitais A1 integrada com Stripe, webhook automático com Make.com, RD Station e Exact Spotter para qualificação de leads em tempo real.
 color: "#10b981"
 technologies: ["WordPress", "Divi Builder", "Elementor", "Stripe", "Make.com", "RD Station", "Exact Spotter", "Google Sheets", "Webhooks"]
-link: https://certificadopj.com.br
-order: 6
+link: null
+order: 7
 images: ["/projects/certificadopj/certificado1.jpg", "/projects/certificadopj/certificado2.jpg", "/projects/certificadopj/make.png"]
 areas: [dev]
 ---
@@ -240,25 +240,23 @@ Google Sheets → Relatórios → KPIs → Otimização
 
 ## Resultados & Impacto
 
-### Métricas de Sucesso
+> O projeto foi **descontinuado**, mas foi uma entrega completa de ponta a ponta: do site ao checkout funcionando e às integrações com os CRMs.
 
-- **Automação:** 100% dos pedidos processados automaticamente (zero trabalho manual)
-- **Qualificação:** Dados estruturados identificam prospects de alto potencial
-- **Velocidade:** Contato SDR em < 5 minutos após compra
-- **Sincronização:** Dados disponíveis em RD Station em tempo real
-- **Histórico:** Planilha mantém auditoria completa de todas as transações
+### O que foi entregue
+
+- **Automação:** cada pedido pago disparava o webhook que cadastrava o cliente nos CRMs, sem digitação.
+- **Qualificação:** campos do checkout organizavam os leads para o time comercial.
+- **Sincronização:** dados enviados ao RD Station e ao Exact Spotter pelo Make.com.
+- **Histórico:** planilha com o registro das transações.
 
 ### Benefícios Realizados
 
 1. **Eficiência Operacional:**
-   - Eliminação de dados manuais (100% automático)
-   - Redução de tempo administrativo em ~10h/semana
-   - Zero erros de digitação ou dados faltando
+   - Fim da digitação manual dos pedidos nos CRMs
 
 2. **Qualificação de Leads:**
    - Campos personalizados permitem segmentação (tamanho empresa, setor)
    - SDRs recebem leads pré-qualificados com contexto completo
-   - Taxa de resposta aumentada (leads já validados)
 
 3. **Integração CRM-to-SDR:**
    - RD Station centraliza todos os contatos

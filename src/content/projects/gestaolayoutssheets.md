@@ -227,19 +227,14 @@ google_sheets_connections (1) ──→ (N) imports
 
 ## Resultados & Impacto
 
-### Métricas de Sucesso
+### O que o sistema faz
 
-- Sistema importando 500+ layouts por dia
-- Redução de 80% no tempo de gestão manual
-- Taxa de sucesso de importação > 95%
-- 10+ usuários ativos diários
-- Dashboard respondendo em < 2s
+- Importa layouts e pedidos de importação direto das planilhas do Google Sheets.
+- Valida os dados na entrada e mostra o que ficou pendente.
+- Acompanha cada layout do recebimento à entrega, com situação e datas.
+- Mostra um painel de indicadores por período (semana, mês, ano) para o time de produção.
 
-### Casos de Uso em Produção
-
-- Agência de design importando layouts semanalmente de planilhas centralizadas
-- Equipe de produção validando 1000+ itens automaticamente
-- Relatórios gerados automaticamente e enviados via email
+> As imagens desta página têm nomes de projetos de clientes ocultos.
 
 ### Aprendizados Principais
 

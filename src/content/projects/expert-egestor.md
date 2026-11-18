@@ -231,7 +231,7 @@ Exam (aprovado) ──→ (1) Certificate
 
 ### 🚀 Em Produção
 
-A plataforma está **totalmente funcional e em operação** em `https://expert.egestor.com.br/`, com empresas usando ativamente para treinamento de funcionários e clientes.
+A plataforma está **totalmente funcional e em operação** em `https://expert.egestor.com.br/`, usada para treinar funcionários e clientes.
 
 ---
 

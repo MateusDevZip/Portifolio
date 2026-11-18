@@ -9,14 +9,14 @@ link: null
 order: 2
 images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm2.jpg", "/projects/crmontesite/crm3.jpg"]
 metrics:
-  - value: "500+"
-    label: "Clientes Ativos"
+  - value: "900+"
+    label: "Projetos cadastrados no CRM"
     color: blue
-  - value: "89%"
-    label: "Aumento em Produtividade"
+  - value: "Do zero"
+    label: "Criado e mantido por mim"
     color: green
-  - value: "99.9%"
-    label: "Uptime de Sincronização"
+  - value: "Time"
+    label: "Coordenação de estagiários"
     color: white
 areas: [dev]
 ---
@@ -24,6 +24,10 @@ areas: [dev]
 ## Visão Geral
 
 O **CRM Monte Site** é um sistema completo de gestão de relacionamento com clientes (CRM) desenvolvido com React, TypeScript e Supabase. Centraliza a gestão de projetos, leads, vendas e relacionamento com clientes em uma única plataforma intuitiva e poderosa.
+
+A frente de venda de sites institucionais não existia na empresa: eu a criei do zero. Desenvolvi o CRM, produzia os sites, registrava os domínios e cuidava da hospedagem. Com o crescimento, estagiários entraram no projeto sob a minha responsabilidade e passei a coordenar esse time e a desenvolver outras ferramentas. Hoje o CRM tem **mais de 900 projetos cadastrados**.
+
+> As imagens desta página têm nomes e números ocultos para proteger os dados dos clientes.
 
 ### 🎯 Propósito
 
@@ -300,19 +304,12 @@ sites (1) ──→ (N) personalizations
 
 ## Resultados & Impacto
 
-### Métricas de Sucesso
+### O que o projeto entregou
 
-- **Adoção:** Sistema em produção gerenciando múltiplos projetos simultâneos
-- **Performance:** Dashboard carrega em < 2s, operações CRUD em < 1s
-- **Disponibilidade:** 99.9% uptime (SLA Supabase)
-- **Escalabilidade:** Suporta 100+ usuários simultâneos sem degradação
-
-### Casos de Uso Reais
-
-- Agência com 500+ projetos em andamento gerenciados simultaneamente
-- Equipe de vendas com conversão aumentada em X% via automação
-- Redução de tempo de gestão em Y% com dashboard centralizado
-- Integrações funcionando sem necessidade de intervenção manual
+- **Em produção:** mais de 900 projetos de sites cadastrados no CRM.
+- **Do zero:** a frente de sites institucionais nasceu com o CRM; antes ela não existia na empresa.
+- **Ponta a ponta:** do pedido do cliente ao site no ar, passando por domínio, DNS e hospedagem.
+- **Time:** o projeto cresceu e ganhou estagiários, que passei a coordenar.
 
 ### Aprendizados Principais
 
