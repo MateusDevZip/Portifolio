@@ -7,7 +7,7 @@ import Projects from '../components/sections/Projects.astro';
 import Footer from '../components/sections/Footer.astro';
 ---
 
-<BaseLayout title="MATEUS S P. — Full-Stack Developer, IA aplicada & Dados" description="Desenvolvedor full-stack (React, TypeScript, Node.js, Python/Flask) com foco em IA aplicada e dados. Projetos do zero até produção, com testes.">
+<BaseLayout title="MATEUS S P. — Full-Stack Developer, IA aplicada & Dados" description="Desenvolvedor full-stack (React, TypeScript, Node.js, Python/Flask) com foco em IA aplicada e dados. Projetos do zero até produção.">
   <Navbar />
   <main>
     <Hero />
@@ -123,13 +123,15 @@ import Footer from '../components/sections/Footer.astro';
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const index = Array.from(projectPreviews).indexOf(entry.target);
-            if (index !== -1) {
+            // posicao entre os projetos visiveis no filtro de area
+            const posicao = Array.from(projectPreviews).filter(p => !p.classList.contains('hidden')).indexOf(entry.target);
+            if (index !== -1 && posicao !== -1) {
               projectLinks.forEach(link => link.classList.remove('active'));
               projectPreviews.forEach(prev => prev.classList.remove('active'));
 
               if (projectLinks[index]) projectLinks[index].classList.add('active');
               if (projectPreviews[index]) projectPreviews[index].classList.add('active');
-              if (counterEl) counterEl.textContent = String(index + 1).padStart(2, '0');
+              if (counterEl) counterEl.textContent = String(posicao + 1).padStart(2, '0');
             }
           }
         });

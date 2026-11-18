@@ -263,10 +263,8 @@ Google Sheets → Relatórios → KPIs → Otimização
    - Exact Spotter facilita prospecção coordenada
    - Pipeline visível em tempo real
 
-4. **Revenue Impact:**
-   - Redução no CAC (Customer Acquisition Cost) do eGestor
-   - Aumento na taxa de conversão PJ → SaaS
-   - Receita dupla: certificado + contrato eGestor
+4. **Objetivo comercial:**
+   - Cada compra de certificado também gerava um lead qualificado para o SaaS do eGestor
 
 ---
 
@@ -303,4 +301,4 @@ Google Sheets → Relatórios → KPIs → Otimização
 
 O **Certificado PJ** exemplifica como um e-commerce bem arquitetado pode ser muito mais que um canal de vendas diretas — é uma **máquina de geração e qualificação de leads** para produtos complementares. A automação end-to-end elimina atritos manuais, garante dados de alta qualidade e permite que o time de SDRs foque em vendas, não em entrada de dados.
 
-A combinação de WordPress + Stripe + Make.com + RD Station provou ser robusta, escalável e economicamente viável, servindo como modelo para outros fluxos de lead generation na empresa.
+A combinação de WordPress + Stripe + Make.com + RD Station funcionou de ponta a ponta, do checkout às integrações de CRM, mesmo com o projeto descontinuado depois.

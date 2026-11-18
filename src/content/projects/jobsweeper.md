@@ -4,7 +4,7 @@ year: 2026
 category: IA aplicada / Automação / Dados
 description: Robô pessoal que busca vagas, dá nota de compatibilidade com o meu perfil e gera um currículo ATS de uma página para cada vaga, sem inventar nada. Mais de 640 testes automatizados.
 color: "#00FFA3"
-technologies: ["Python", "Flask", "Playwright", "SQLite", "pytest", "Claude (Anthropic)", "HTML", "CSS", "JavaScript"]
+technologies: ["Python", "Flask", "Playwright", "SQLite", "pytest", "Replicate (Llama 3)", "HTML", "CSS", "JavaScript"]
 link: null
 order: 1
 areas: [ia, dev, dados]
@@ -44,8 +44,8 @@ Buscar vagas, ler cada descrição e montar um currículo diferente para cada um
 ### 🧠 Decisões que importam
 
 - **Nunca inventar:** o currículo de cada vaga só reorganiza e destaca o que já está no currículo mestre; o que falta aparece como lacuna, não como habilidade.
-- **Teste antes do código:** cada regra de nota, cada filtro de vaga e cada formato de arquivo nasceu de um teste que falhava primeiro.
-- **Dados locais:** dados pessoais ficam fora do git; nada sai da máquina sem eu pedir.
+- **Testes como rede de segurança:** as regras de nota, os filtros de vaga e os formatos de arquivo têm testes automatizados, e as partes mais recentes foram escritas com o teste antes do código.
+- **Dados locais:** dados pessoais ficam fora do git e só vão para os serviços que eu configurei (busca de vagas e IA).
 
 ## Stack Técnico
 
@@ -53,7 +53,7 @@ Buscar vagas, ler cada descrição e montar um currículo diferente para cada um
 - **SQLite** — fila de vagas e histórico
 - **Playwright** — automação de navegador e geração dos PDFs
 - **pytest** — mais de 640 testes automatizados
-- **LLM (API da Anthropic/Claude)** — análise de perfil
+- **LLM (Llama 3 via Replicate)** — análise de perfil
 - Desenvolvido com **Claude Code** e **Codex**, com revisão de código por um segundo modelo a cada parte
 
 ## Status

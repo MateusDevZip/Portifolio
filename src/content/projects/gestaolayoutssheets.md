@@ -7,7 +7,7 @@ color: "#22c55e"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui", "Vite", "Google Sheets API"]
 link: null
 order: 3
-images: ["/projects/gestaolayoutssheets/layout1.jpg", "/projects/gestaolayoutssheets/layout2.jpg"]
+images: ["/projects/gestaolayoutssheets/layout1.jpg"]
 areas: [dev, dados]
 ---
 
@@ -133,7 +133,6 @@ Desenvolvido com **Lovable** (plataforma de IA para web apps) e refinado com aju
 - Exportar layouts em PDF
 - Gerar relatórios customizáveis
 - Agendar exportações automáticas
-- Email com relatórios em anexo
 - Múltiplos formatos (PDF, CSV, Excel)
 
 ### 6. Sincronização Automática

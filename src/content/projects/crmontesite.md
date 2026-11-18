@@ -1,7 +1,7 @@
 ---
 title: CRM Monte Site
 year: 2024
-category: Plataforma SaaS / Gestão Empresarial
+category: Sistema interno / CRM / Gestão de Projetos
 description: Sistema completo de CRM para gestão de projetos, leads e vendas. Integra painel de vendas em tempo real, gerenciamento de clientes, personalização de sites e integrações com Hostinger.
 color: "#3b82f6"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
@@ -40,11 +40,10 @@ Facilitar o fluxo de trabalho de equipes de vendas e desenvolvimento, desde a ca
 
 ### 👥 Público-Alvo
 
-**Equipe de desenvolvimento e de suporte pois podem controlar os projetos de sites e clientes através do sistema por kanban:**
-- Agências de criação de websites
-- Empresas de consultoria digital
-- Prestadores de serviço (desenvolvedores, designers)
-- Pequenas e médias empresas (PMEs)
+Ferramenta interna, usada pelos times que tocam a frente de sites institucionais:
+- **Vendas:** acompanham leads e o funil
+- **Desenvolvimento:** controlam cada site no kanban, do pedido ao site no ar
+- **Suporte:** consultam o status de cada cliente e projeto
 
 ### ⚡ Benefícios Principais
 

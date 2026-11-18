@@ -7,7 +7,8 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, ogImage = '/og-image.png' } = Astro.props;
+// ogImage relativo: new URL(ogImage, Astro.site) junta com o site + /Portifolio/
+const { title, description, ogImage = 'og-image.jpg' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -36,9 +37,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" href="/favicon-192x192.png">
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml">
+    <link rel="shortcut icon" href={`${import.meta.env.BASE_URL}favicon.ico`}>
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}favicon-192x192.png`}>
 </head>
 <body class="antialiased">
 

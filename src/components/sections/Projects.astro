@@ -94,6 +94,12 @@ const FILTROS = [['todos', 'Todos'], ['dev', 'Desenvolvimento'], ['ia', 'IA'], [
       });
       const visiveis = document.querySelectorAll('#project-links [data-areas]:not(.hidden)').length;
       if (totalVisivel) totalVisivel.textContent = `/ ${String(visiveis).padStart(2, '0')}`;
+      // recomeca do primeiro visivel: contador e selecao ativa
+      const contador = document.getElementById('project-counter');
+      if (contador) contador.textContent = '01';
+      document.querySelectorAll('.split-project-item, .project-preview-item').forEach((el) => el.classList.remove('active'));
+      document.querySelector('#project-links [data-areas]:not(.hidden)')?.classList.add('active');
+      document.querySelector('#project-previews [data-areas]:not(.hidden)')?.classList.add('active');
     });
   });
 </script>

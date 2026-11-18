@@ -56,7 +56,6 @@ Simplificar o processo de treinamento corporativo, permitindo que gestores criem
 
 **Características:**
 - Responsive design (mobile, tablet, desktop)
-- Acessibilidade (WCAG compliance)
 - Performance otimizada
 
 ### Backend

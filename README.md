@@ -41,7 +41,7 @@ npm run build   # gerar o site em dist/
 npm run preview # ver o build
 ```
 
-Para borrar dados reais em um print novo: `python scripts/borrar_regioes.py` (as regiões ficam no próprio script).
+Para borrar dados reais em um print novo: guarde o original fora do repositório, acrescente as regiões em `scripts/borrar_regioes.py` e rode `python scripts/borrar_regioes.py --origem PASTA_DOS_ORIGINAIS`.
 
 ---
 

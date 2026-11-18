@@ -219,7 +219,7 @@ Cada grupo é isolado e apenas seus membros têm acesso aos dados.
 ## Aprendizados
 
 1. **Supabase RLS é poderoso:** Segurança ao nível do banco de dados
-2. **Dark mode melhora UX:** Usuários passam mais tempo na aplicação
+2. **Modo escuro desde o início:** mais simples do que adaptar o tema depois
 3. **Gráficos motivam:** Visualizar dados financeiros inspira melhor gestão
 4. **Colaboração é complexa:** Múltiplos usuários exigem sincronização cuidadosa
 5. **Templates Jinja2 flexíveis:** Renderização dinâmica facilita prototipagem rápida
@@ -228,7 +228,7 @@ Cada grupo é isolado e apenas seus membros têm acesso aos dados.
 
 ## Próximas Etapas
 
-- [ ] Deploy em produção (Heroku/Render)
+- [ ] Domínio próprio e hospedagem definitiva (hoje em beta na Vercel)
 - [ ] Testes automatizados e CI/CD
 - [ ] Performance profiling e otimizações
 - [ ] Feedback de usuários iniciais
