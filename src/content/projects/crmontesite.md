@@ -7,7 +7,7 @@ color: "#3b82f6"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui"]
 link: null
 order: 2
-images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm2.jpg", "/projects/crmontesite/crm3.jpg"]
+images: ["/projects/crmontesite/crm1.jpg", "/projects/crmontesite/crm3.jpg"]
 metrics:
   - value: "900+"
     label: "Projetos cadastrados no CRM"
@@ -27,7 +27,7 @@ O **CRM Monte Site** é um sistema completo de gestão de relacionamento com cli
 
 A frente de venda de sites institucionais não existia na empresa: eu a criei do zero. Desenvolvi o CRM, produzia os sites, registrava os domínios e cuidava da hospedagem. Com o crescimento, estagiários entraram no projeto sob a minha responsabilidade e passei a coordenar esse time e a desenvolver outras ferramentas. Hoje o CRM tem **mais de 900 projetos cadastrados**.
 
-> As imagens desta página têm nomes e números ocultos para proteger os dados dos clientes.
+> Na tela de leads, os nomes de empresas, clientes e vendedores foram trocados por nomes fictícios para proteger os dados dos clientes.
 
 ### 🎯 Propósito
 

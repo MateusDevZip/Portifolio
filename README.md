@@ -20,7 +20,7 @@ Portfólio pessoal com os projetos que eu construí, agrupados pelas três área
 | **Alt+Loot** | Dev | Jogo idle/clicker com cara de software corporativo (React, Supabase). |
 | **Certificado PJ** | Dev | Venda de certificados digitais com checkout e automações de CRM (WordPress, WooCommerce, Stripe, Make.com); descontinuado. |
 
-Os números que aparecem nas páginas são os que eu posso confirmar. Prints de sistemas com dados de clientes têm nomes e números ocultos, e os do JobSweeper usam dados de demonstração.
+Os números que aparecem nas páginas são os que eu posso confirmar. Na tela de leads do CRM, os nomes reais foram trocados por nomes fictícios, e os prints do JobSweeper usam dados de demonstração.
 
 ---
 
@@ -42,6 +42,8 @@ npm run preview # ver o build
 ```
 
 Para borrar dados reais em um print novo: guarde o original fora do repositório, acrescente as regiões em `scripts/borrar_regioes.py` e rode `python scripts/borrar_regioes.py --origem PASTA_DOS_ORIGINAIS`.
+
+Para trocar nomes reais por fictícios no print de leads do CRM, rode `python scripts/nomes_ficticios.py --origem PASTA_DOS_ORIGINAIS --fonte PASTA_COM_INTER` (Inter-Regular.ttf e Inter-Medium.ttf, do Google Fonts).
 
 ---
 

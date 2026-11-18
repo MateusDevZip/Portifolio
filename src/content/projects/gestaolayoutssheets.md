@@ -7,7 +7,7 @@ color: "#22c55e"
 technologies: ["React", "TypeScript", "TailwindCSS", "Supabase", "shadcn/ui", "Vite", "Google Sheets API"]
 link: null
 order: 3
-images: ["/projects/gestaolayoutssheets/layout1.jpg"]
+images: ["/projects/gestaolayoutssheets/layout1.jpg", "/projects/gestaolayoutssheets/layout2.jpg"]
 areas: [dev, dados]
 ---
 
@@ -233,7 +233,6 @@ google_sheets_connections (1) ──→ (N) imports
 - Acompanha cada layout do recebimento à entrega, com situação e datas.
 - Mostra um painel de indicadores por período (semana, mês, ano) para o time de produção.
 
-> As imagens desta página têm nomes de projetos de clientes ocultos.
 
 ### Aprendizados Principais
 
