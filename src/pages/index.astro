@@ -129,7 +129,15 @@ import Footer from '../components/sections/Footer.astro';
               projectLinks.forEach(link => link.classList.remove('active'));
               projectPreviews.forEach(prev => prev.classList.remove('active'));
 
-              if (projectLinks[index]) projectLinks[index].classList.add('active');
+              if (projectLinks[index]) {
+                projectLinks[index].classList.add('active');
+                // no desktop a lista tem altura limitada: centraliza o projeto ativo nela
+                const lista = projectLinks[index].parentElement;
+                if (lista && lista.scrollHeight > lista.clientHeight) {
+                  const alvo = projectLinks[index].offsetTop - (lista.clientHeight - projectLinks[index].offsetHeight) / 2;
+                  lista.scrollTo({ top: Math.max(0, alvo), behavior: 'smooth' });
+                }
+              }
               if (projectPreviews[index]) projectPreviews[index].classList.add('active');
               if (counterEl) counterEl.textContent = String(posicao + 1).padStart(2, '0');
             }

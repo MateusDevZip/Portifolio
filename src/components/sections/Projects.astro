@@ -12,7 +12,8 @@ const FILTROS = [['todos', 'Todos'], ['dev', 'Desenvolvimento'], ['ia', 'IA'], [
   <div class="grid lg:grid-cols-2 gap-12 lg:gap-24">
 
     <!-- Left: Project Names -->
-    <div class="lg:sticky lg:top-[100px] xl:top-[120px] lg:self-start">
+    <!-- A coluna fixa cabe na tela; a lista rola sozinha até o projeto ativo (ver index.astro) -->
+    <div class="lg:sticky lg:top-[100px] xl:top-[120px] lg:self-start lg:flex lg:flex-col lg:max-h-[calc(100vh-120px)] xl:max-h-[calc(100vh-140px)]">
       <div class="flex items-end justify-between mb-4">
         <span id="project-counter" class="project-counter">01</span>
         <span class="text-white/20 font-space text-sm tracking-widest">/ {sortedProjects.length.toString().padStart(2, '0')}</span>
@@ -31,7 +32,7 @@ const FILTROS = [['todos', 'Todos'], ['dev', 'Desenvolvimento'], ['ia', 'IA'], [
         ))}
       </div>
 
-      <div class="space-y-4" id="project-links">
+      <div class="lista-projetos relative space-y-4 lg:flex-1 lg:min-h-0 lg:overflow-hidden" id="project-links">
         {sortedProjects.map((project, idx) => (
           <a href={`${import.meta.env.BASE_URL}projetos/${project.slug}`} data-areas={project.data.areas.join(' ')} class="split-project-item flex justify-between items-center py-4 pl-6 cursor-pointer group" class:list={{ active: idx === 0 }}>
             <div class="flex-1 min-w-0">
@@ -95,6 +96,7 @@ const FILTROS = [['todos', 'Todos'], ['dev', 'Desenvolvimento'], ['ia', 'IA'], [
       const visiveis = document.querySelectorAll('#project-links [data-areas]:not(.hidden)').length;
       if (totalVisivel) totalVisivel.textContent = `/ ${String(visiveis).padStart(2, '0')}`;
       // recomeca do primeiro visivel: contador e selecao ativa
+      document.getElementById('project-links')?.scrollTo({ top: 0 });
       const contador = document.getElementById('project-counter');
       if (contador) contador.textContent = '01';
       document.querySelectorAll('.split-project-item, .project-preview-item').forEach((el) => el.classList.remove('active'));
@@ -157,6 +159,12 @@ const FILTROS = [['todos', 'Todos'], ['dev', 'Desenvolvimento'], ['ia', 'IA'], [
 
   .project-card.active {
     transform: scale(1);
+  }
+
+  @media (min-width: 1024px) {
+    .lista-projetos {
+      mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 56px), transparent 100%);
+    }
   }
 
   .filtro-area[aria-pressed='true'] {
